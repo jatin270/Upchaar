@@ -7,7 +7,7 @@ package Constant;
 
 public class Constant {
 
-    public static final String BASE_URL = "http://apaar97.pythonanywhere.com/api/";
+    public static final String BASE_URL = "http://upchaar.pythonanywhere.com/api/";
     public static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
     public static final String NO_INTERNET_CONNECTION = "No Internet connection";
 }

@@ -1,9 +1,12 @@
 package services;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import models.LoginUser;
 import models.User;
 import models.books;
 import okhttp3.RequestBody;
@@ -29,13 +32,11 @@ import retrofit2.http.QueryMap;
 
 public interface UpchaarService {
 
-
     @GET("books")
     Call<ArrayList<books>> listBooks();
 
-    @POST("books")
-    Call<books> addBook(@Body books book);
-
+    @POST("login/")
+    Call<User> login(@Body LoginUser user);
 
     @GET("books/{id}/")
     Call<books> getBookInfo(@Path("id") int bookId);
@@ -48,7 +49,6 @@ public interface UpchaarService {
 
     @DELETE("clean/")
     Call<Void> deleteAll();
-
 
 }
 
