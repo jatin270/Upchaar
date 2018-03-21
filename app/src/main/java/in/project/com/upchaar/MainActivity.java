@@ -1,5 +1,6 @@
 package in.project.com.upchaar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
         Call<User> loginRequest = libraryServiceAPI.login(user);
 
         loginRequest.enqueue(new Callback<User>() {
+        // calling doctor sign up
+        Intent PlayIntent=new Intent(MainActivity.this,DoctorSignUp.class);
+//        Log.d("xyxyxyx","" + x);
+//        PlayIntent.putExtra("x", x);
+//        PlayIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+
+
 
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
