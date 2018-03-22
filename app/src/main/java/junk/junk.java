@@ -1,5 +1,9 @@
 package junk;
 
+import android.widget.Toast;
+
+import java.util.ArrayList;
+
 import client.RestClient;
 import models.books;
 import retrofit2.Call;
@@ -13,7 +17,29 @@ import services.UpchaarService;
 
 public class junk {
     void function() {
+
+
+/*
         UpchaarService libraryServiceAPI = RestClient.getClient();
+
+
+        Call<ArrayList<books>> listBooksCall = libraryServiceAPI.listBooks();
+        listBooksCall.enqueue(new Callback<ArrayList<books>>() {
+            @Override
+            public void onResponse(Call<ArrayList<books>> call, Response<ArrayList<books>> response) {
+                if (response.isSuccessful()) {
+                    ArrayList<books> book = response.body();
+                    // Set response Books as listed layout
+
+                } else {
+                }
+            }
+            @Override
+            public void onFailure(Call<ArrayList<books>> call, Throwable t) {
+
+            }
+        });
+
 
         books entity = new books();
         entity.setAuthor("Hello");
@@ -116,5 +142,6 @@ public class junk {
             public void onFailure(Call<Void> call, Throwable t) {
             }
         });
+        */
     }
 }

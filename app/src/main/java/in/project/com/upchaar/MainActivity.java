@@ -8,12 +8,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import Constant.Constant;
 import client.RestClient;
+import models.LoginUser;
 import models.User;
 import models.books;
 import retrofit2.Call;
@@ -31,35 +35,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView textView= (TextView) findViewById(R.id.sample);
         UpchaarService libraryServiceAPI = RestClient.getClient();
+        final TextView textView= (TextView) findViewById(R.id.textView);
 
+        LoginUser user=new LoginUser();
+        user.setUsername("jatin11");
+        user.setPassword("qwerty@123");
+
+        Call<User> loginRequest = libraryServiceAPI.login(user);
+
+        loginRequest.enqueue(new Callback<User>() {
         // calling doctor sign up
         Intent PlayIntent=new Intent(MainActivity.this,DoctorSignUp.class);
 //        Log.d("xyxyxyx","" + x);
 //        PlayIntent.putExtra("x", x);
 //        PlayIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(PlayIntent);
 
 
 
-        Call<ArrayList<books>> listBooksCall = libraryServiceAPI.listBooks();
-        listBooksCall.enqueue(new Callback<ArrayList<books>>() {
+
             @Override
-            public void onResponse(Call<ArrayList<books>> call, Response<ArrayList<books>> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
+                System.out.println(response.code());
                 if (response.isSuccessful()) {
-                    ArrayList<books> book = response.body();
-                    // Set response Books as listed layout
-                    textView.setText(book.toString());
+                    User user1 = response.body();
+
+                    if (user1 != null) {
+                        textView.setText("Login Successful");
+                    }
                 } else {
-                    Toast.makeText(getBaseContext(), "Error", Toast.LENGTH_SHORT).show();
+                    textView.setText("Login Unsuccessful");
                 }
             }
-            @Override
-            public void onFailure(Call<ArrayList<books>> call, Throwable t) {
 
-                Toast.makeText(getBaseContext(), "Failure", Toast.LENGTH_SHORT).show();
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                textView.setText("Request Failed");
+                t.printStackTrace();
             }
+
         });
     }
 }

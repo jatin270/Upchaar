@@ -27,7 +27,6 @@ public class RestClient {
                     .setDateFormat(Constant.DATE_FORMAT)
                     .create();
 
-            // Add logging into retrofit 2.0
             HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
             logging.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
