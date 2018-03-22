@@ -133,16 +133,17 @@
                 android:spinnerMode="dropdown"
                 android:text="Specialization" />
 
-            <EditText
-                android:id="@+id/OtherOption"
-                android:layout_height="wrap_content"
+            <Spinner
+                android:id="@+id/spinner_qualifications"
                 android:layout_width="300dp"
-                android:layout_below="@+id/Medical_specs"
+                android:layout_height="24dp"
+                android:layout_below="@+id/spinner_specialization"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:ems="10"
-                android:visibility="invisible"
-                android:hint="add specialization" />
+                android:layout_marginTop="24dp"
+                android:spinnerMode="dropdown"
+                android:text="Qualifications" />
+
+
 
 
         </RelativeLayout>

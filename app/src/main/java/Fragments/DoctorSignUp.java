@@ -48,16 +48,20 @@ public class DoctorSignUp extends Fragment {
     Button setDate;
     EditText DOBtext;
     Spinner spinner_specialization;
-    EditText OtherOption;
     EditText Email;
     EditText Password;
     TextView Medical_specs;
     EditText Username;
+    Spinner spinner_qualification;
     private String OtherText ="";
+    CustomSpinnerAdapter adapter_qual;
+    CustomSpinnerAdapter adapter;
+    private String OtherText2 ="";
 
     String defaultTextForSpinner1 = "Medical Specifications ";
     ArrayList<String> arrayForSpinner = new ArrayList<String>(Arrays.asList("One", "Two", "Three","Other"));
-
+    ArrayList<String> QualificationArray = new ArrayList<String>(Arrays.asList("A", "B", "C","Other"));
+    String defaultTextForSpinner2 = "Qualification ";
     private class dateOfBirth {
         int date;
         int month;
@@ -95,12 +99,12 @@ public class DoctorSignUp extends Fragment {
         DOB = (DatePicker)view.findViewById(R.id.editText7);
         setDate = (Button)view.findViewById(R.id.button);
         DOBtext = (EditText)view.findViewById(R.id.DateOfBirthtext);
-        OtherOption = (EditText)view.findViewById(R.id.OtherOption);
         Email = (EditText)view.findViewById(R.id.Email_id);
         Password = (EditText)view.findViewById(R.id.Password);
         Username = (EditText)view.findViewById(R.id.Username);
         Medical_specs = (TextView)view.findViewById(R.id.Medical_specs);
         spinner_specialization = (Spinner) view.findViewById(R.id.spinner_specialization);
+        spinner_qualification = (Spinner)view.findViewById(R.id.spinner_qualifications);
 
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +118,7 @@ public class DoctorSignUp extends Fragment {
                 Username.setVisibility(View.INVISIBLE);
                 Medical_specs.setVisibility(View.INVISIBLE);
                 spinner_specialization.setVisibility(View.INVISIBLE);
+                spinner_qualification.setVisibility(View.INVISIBLE);
 
             }
         });
@@ -134,19 +139,15 @@ public class DoctorSignUp extends Fragment {
 
 
 
-        final CustomSpinnerAdapter adapter = new CustomSpinnerAdapter(this.getActivity(), R.layout.spinner_item, arrayForSpinner, defaultTextForSpinner1);
+        adapter = new CustomSpinnerAdapter(this.getActivity(), R.layout.spinner_item, arrayForSpinner, defaultTextForSpinner1);
         spinner_specialization.setAdapter(adapter);
-
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Log.d("selected" , + i + "/n" + l);
                 String selected_option = arrayForSpinner.get(i);
                 if(selected_option.equalsIgnoreCase("Other")) {
-                    getOtherText();
-                    if(OtherText!=null && !OtherText.isEmpty())
-                        arrayForSpinner.add(OtherText);
-                        adapter.notifyDataSetChanged();
+                    getOtherText(1);
                     }
             }
 
@@ -157,11 +158,28 @@ public class DoctorSignUp extends Fragment {
         };
         spinner_specialization.setOnItemSelectedListener(itemSelectedListener);
 
+        adapter_qual = new CustomSpinnerAdapter(this.getActivity(), R.layout.spinner_item, QualificationArray, defaultTextForSpinner2);
+        spinner_qualification.setAdapter(adapter_qual);
+        AdapterView.OnItemSelectedListener itemSelectedListenerQual = new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String selected_option = QualificationArray.get(i);
+                if(selected_option.equalsIgnoreCase("Other")) {
+                    getOtherText(2);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        };
+        spinner_qualification.setOnItemSelectedListener(itemSelectedListenerQual);
 
         return view;
     }
 
-    public void getOtherText(){
+    public void getOtherText(final int i){
         AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
         builder.setTitle("Add Specialization");
 
@@ -175,7 +193,14 @@ public class DoctorSignUp extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                OtherText = input.getText().toString();
+                if(i == 1) {
+                    OtherText = input.getText().toString();
+                    call1();
+                }
+                else{
+                    OtherText2 = input.getText().toString();
+                    call2();
+                }
             }
         });
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -186,7 +211,6 @@ public class DoctorSignUp extends Fragment {
         });
 
         builder.show();
-
     }
 
     public void collapse(){
@@ -199,6 +223,7 @@ public class DoctorSignUp extends Fragment {
         Medical_specs.setVisibility(View.VISIBLE);
         Username.setVisibility(View.VISIBLE);
         spinner_specialization.setVisibility(View.VISIBLE);
+        spinner_qualification.setVisibility(View.VISIBLE);
     }
 
     public class CustomSpinnerAdapter extends ArrayAdapter<String> {
@@ -247,6 +272,17 @@ public class DoctorSignUp extends Fragment {
             return row;
         }
 
+    }
+
+    public void call1(){
+        if(OtherText!=null && !OtherText.isEmpty())
+            arrayForSpinner.add(OtherText);
+        adapter.notifyDataSetChanged();
+    }
+    public void call2(){
+        if(OtherText2!=null && !OtherText2.isEmpty())
+            QualificationArray.add(OtherText2);
+        adapter_qual.notifyDataSetChanged();
     }
 
 //    public void login(){
