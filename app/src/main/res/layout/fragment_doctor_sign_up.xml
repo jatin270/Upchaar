@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width = "fill_parent"
+    android:layout_height = "fill_parent"
+    android:fillViewport="true"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="false"
+            tools:context="in.project.com.upchaar.DoctorSignUp">
+
+
+            <TextView
+                android:id="@+id/DoctorHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="50sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:text="Doctor"
+                android:textAlignment="center"
+                android:textSize="30dp" />
+
+
+            <TextView
+                android:id="@+id/RegistrationHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="50sp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="40dp"
+                android:text="Registration"
+                android:textAlignment="center"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/Name"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/RegistrationHeading"
+                android:layout_centerHorizontal="true"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Name"/>
+
+            <Button
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignEnd="@+id/DateOfBirthtext"
+                android:layout_alignRight="@+id/DateOfBirthtext"
+                android:layout_alignTop="@+id/DateOfBirthtext"
+                android:text="Set Date" />
+
+            <DatePicker
+                android:id="@+id/editText7"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/Name"
+                android:layout_alignStart="@+id/Name"
+                android:layout_below="@+id/Name"
+                android:layout_marginTop="24dp"
+                android:inputType="date"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/DateOfBirthtext"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/Name"
+                android:layout_alignStart="@+id/Name"
+                android:layout_below="@+id/Name"
+                android:layout_marginTop="24dp"
+                android:inputType="date"
+                android:hint="Date Of Birth"
+                android:visibility="visible" />
+
+            <EditText
+                android:id="@+id/Email_id"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/DateOfBirthtext"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:hint="E-mail Address" />
+
+            <EditText
+                android:id="@+id/Username"
+                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_below="@+id/Email_id"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Username"/>
+
+            <EditText
+                android:id="@+id/Password"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/Username"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:hint="Password" />
+
+            <TextView
+                android:id="@+id/Medical_specs"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_below="@+id/Password"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="Medical Specifications" />
+
+            <Spinner
+                android:id="@+id/spinner_specialization"
+                android:layout_width="300dp"
+                android:layout_height="24dp"
+                android:layout_below="@+id/Medical_specs"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:spinnerMode="dropdown"
+                android:text="Specialization" />
+
+            <EditText
+                android:id="@+id/OtherOption"
+                android:layout_height="wrap_content"
+                android:layout_width="300dp"
+                android:layout_below="@+id/Medical_specs"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:ems="10"
+                android:visibility="invisible"
+                android:text="add specialization" />
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</ScrollView>

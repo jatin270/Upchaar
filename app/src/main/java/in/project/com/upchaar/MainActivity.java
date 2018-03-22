@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Constant.Constant;
-import Fragments.LoginFragment;
+import Fragments.*;
 import client.RestClient;
 import models.LoginUser;
 import models.User;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction trans;
     private FragmentManager manager;
     private LoginFragment loginFragment;
+    private Fragments.DoctorSignUp DoctorSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,5 +47,8 @@ public class MainActivity extends AppCompatActivity {
         manager=getSupportFragmentManager();
         trans=manager.beginTransaction();
         loginFragment= (LoginFragment)manager.findFragmentById(R.id.login_fragment);
+        trans.hide(loginFragment);
+        trans.commit();
+        DoctorSignUp  = (Fragments.DoctorSignUp)manager.findFragmentById(R.id.doctorSignUp);
     }
 }
