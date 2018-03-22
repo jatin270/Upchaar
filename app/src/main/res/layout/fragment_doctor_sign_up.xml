@@ -142,7 +142,7 @@
                 android:layout_marginTop="30dp"
                 android:ems="10"
                 android:visibility="invisible"
-                android:text="add specialization" />
+                android:hint="add specialization" />
 
 
         </RelativeLayout>

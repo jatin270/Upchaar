@@ -1,10 +1,13 @@
 package Fragments;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,6 +53,7 @@ public class DoctorSignUp extends Fragment {
     EditText Password;
     TextView Medical_specs;
     EditText Username;
+    private String OtherText ="";
 
     String defaultTextForSpinner1 = "Medical Specifications ";
     ArrayList<String> arrayForSpinner = new ArrayList<String>(Arrays.asList("One", "Two", "Three","Other"));
@@ -123,7 +127,6 @@ public class DoctorSignUp extends Fragment {
                         dob.date = dayOfMonth;
                         dob.month = month + 1;
                         dob.year = year;
-//                Log.d("Date","" + dob.date + dob.month+dob.year);
                         DOBtext.setText("" + dob.date + "/" + dob.month + "/" + dob.year);
                         collapse();
                     }
@@ -140,14 +143,11 @@ public class DoctorSignUp extends Fragment {
                 Log.d("selected" , + i + "/n" + l);
                 String selected_option = arrayForSpinner.get(i);
                 if(selected_option.equalsIgnoreCase("Other")) {
-
-                    OtherOption.setVisibility(View.VISIBLE);
-                    String text = (String)OtherOption.getText().toString();
-                    arrayForSpinner.add(text);
-                    adapter.notifyDataSetChanged();
-                    removeVisibility();
-                }
-
+                    getOtherText();
+                    if(OtherText!=null && !OtherText.isEmpty())
+                        arrayForSpinner.add(OtherText);
+                        adapter.notifyDataSetChanged();
+                    }
             }
 
             @Override
@@ -161,6 +161,34 @@ public class DoctorSignUp extends Fragment {
         return view;
     }
 
+    public void getOtherText(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
+        builder.setTitle("Add Specialization");
+
+        // Set up the input
+        final EditText input = new EditText(this.getActivity());
+        // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                OtherText = input.getText().toString();
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+
+    }
+
     public void collapse(){
         DOB.setVisibility(View.INVISIBLE);
         DOB.setClickable(false);
@@ -171,10 +199,6 @@ public class DoctorSignUp extends Fragment {
         Medical_specs.setVisibility(View.VISIBLE);
         Username.setVisibility(View.VISIBLE);
         spinner_specialization.setVisibility(View.VISIBLE);
-    }
-
-    public void removeVisibility(){
-        OtherOption.setVisibility(View.INVISIBLE);
     }
 
     public class CustomSpinnerAdapter extends ArrayAdapter<String> {
