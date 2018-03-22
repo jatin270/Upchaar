@@ -52,7 +52,10 @@ public class DoctorSignUp extends Fragment {
     EditText Password;
     TextView Medical_specs;
     EditText Username;
+    EditText Address;
     Spinner spinner_qualification;
+    Spinner gender;
+    Button Submit;
     private String OtherText ="";
     CustomSpinnerAdapter adapter_qual;
     CustomSpinnerAdapter adapter;
@@ -61,6 +64,7 @@ public class DoctorSignUp extends Fragment {
     String defaultTextForSpinner1 = "Medical Specifications ";
     ArrayList<String> arrayForSpinner = new ArrayList<String>(Arrays.asList("One", "Two", "Three","Other"));
     ArrayList<String> QualificationArray = new ArrayList<String>(Arrays.asList("A", "B", "C","Other"));
+    ArrayList<String> genderArray = new ArrayList<String>(Arrays.asList("M", "F","Other"));
     String defaultTextForSpinner2 = "Qualification ";
     private class dateOfBirth {
         int date;
@@ -102,9 +106,13 @@ public class DoctorSignUp extends Fragment {
         Email = (EditText)view.findViewById(R.id.Email_id);
         Password = (EditText)view.findViewById(R.id.Password);
         Username = (EditText)view.findViewById(R.id.Username);
+        Address = (EditText)view.findViewById(R.id.Address);
         Medical_specs = (TextView)view.findViewById(R.id.Medical_specs);
         spinner_specialization = (Spinner) view.findViewById(R.id.spinner_specialization);
         spinner_qualification = (Spinner)view.findViewById(R.id.spinner_qualifications);
+        gender = (Spinner)view.findViewById(R.id.spinner_gender);
+        Submit = (Button)view.findViewById(R.id.Submit);
+
 
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,6 +127,10 @@ public class DoctorSignUp extends Fragment {
                 Medical_specs.setVisibility(View.INVISIBLE);
                 spinner_specialization.setVisibility(View.INVISIBLE);
                 spinner_qualification.setVisibility(View.INVISIBLE);
+                gender.setVisibility(View.INVISIBLE);
+                Address.setVisibility(View.INVISIBLE);
+                Submit.setVisibility(View.INVISIBLE);
+
 
             }
         });
@@ -176,6 +188,9 @@ public class DoctorSignUp extends Fragment {
         };
         spinner_qualification.setOnItemSelectedListener(itemSelectedListenerQual);
 
+        final CustomSpinnerAdapter genderAdapter = new CustomSpinnerAdapter(this.getActivity(), R.layout.spinner_item, genderArray, "Gender");
+        gender.setAdapter(genderAdapter);
+
         return view;
     }
 
@@ -224,6 +239,9 @@ public class DoctorSignUp extends Fragment {
         Username.setVisibility(View.VISIBLE);
         spinner_specialization.setVisibility(View.VISIBLE);
         spinner_qualification.setVisibility(View.VISIBLE);
+        gender.setVisibility(View.VISIBLE);
+        Address.setVisibility(View.VISIBLE);
+        Submit.setVisibility(View.VISIBLE);
     }
 
     public class CustomSpinnerAdapter extends ArrayAdapter<String> {
