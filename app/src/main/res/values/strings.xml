@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Upchaar</string>
+    <string name="title_activity_doctors_list">DoctorsListActivity</string>
 </resources>
