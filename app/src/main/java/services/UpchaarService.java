@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import models.LoginUser;
+import models.SignUpUser;
 import models.User;
 import models.books;
 import okhttp3.RequestBody;
@@ -32,21 +33,38 @@ import retrofit2.http.QueryMap;
 
 public interface UpchaarService {
 
+    //Get Request-------------------------------------------------------------------------------------------------------------------------
     @GET("books")
     Call<ArrayList<books>> listBooks();
 
+
+    //Post Request-------------------------------------------------------------------------------------------------------------------------
     @POST("login/")
     Call<User> login(@Body LoginUser user);
 
+    @POST("users/")
+    Call<SignUpUser> signup(@Body SignUpUser user);
+
+
+
+    //Get Request with search id-------------------------------------------------------------------------------------------------------------------------
     @GET("books/{id}/")
     Call<books> getBookInfo(@Path("id") int bookId);
 
+
+
+    //Delete Request-------------------------------------------------------------------------------------------------------------------------
     @DELETE("books/{id}/")
     Call<Void> deleteBook(@Path("id") int bookId);
 
+
+    //Update Request-------------------------------------------------------------------------------------------------------------------------
     @PUT("books/{id}/")
     Call<books> updateBook(@Path("id") String bookId, @Body books book);
 
+
+
+    //Complete Delete Request-------------------------------------------------------------------------------------------------------------------------
     @DELETE("clean/")
     Call<Void> deleteAll();
 

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,7 +86,6 @@ public class LoginFragment extends Fragment {
                 } else {
                     status="Login Unsuccessful";
                     status_textview.setText(status);
-
                 }
             }
             @Override
@@ -107,10 +105,11 @@ public class LoginFragment extends Fragment {
         String password_local = password.getText().toString().trim();
 
 
-        if (username_local != null)
+        if (username_local != null) {
             user.setUsername(username_local);
-        else
+        } else {
             user.setUsername("");
+        }
 
         if (password_local != null) {
             user.setPassword(password_local);
