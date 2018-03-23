@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="in.project.com.upchaar.MainActivity">
 
-    <fragment
-        android:id="@+id/login_fragment"
-        android:name="Fragments.LoginFragment"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-
-        />
-
-    <fragment
-        android:id="@+id/commonuser_fragment"
-        android:name="Fragments.SignUpFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/login_fragment" />
+     <fragment
+         android:id="@+id/doctorSignUp"
+         android:name="Fragments.DoctorSignUp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_alignParentTop="true"
+         tools:layout="@layout/fragment_doctor_sign_up" />
 </RelativeLayout>
