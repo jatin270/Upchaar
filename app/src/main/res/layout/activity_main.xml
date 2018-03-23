@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     tools:context="in.project.com.upchaar.MainActivity">
 
-     <fragment
-         android:id="@+id/doctorSignUp"
-         android:name="Fragments.DoctorSignUp"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_alignParentBottom="true"
-         android:layout_alignParentTop="true"
-         tools:layout="@layout/fragment_doctor_sign_up" />
+    <fragment
+        android:id="@+id/doctorSignUp"
+        android:name="Fragments.DoctorSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
 </RelativeLayout>
