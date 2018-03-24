@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusable="false"
-            tools:context="fragments.DoctorSignUp">
+            tools:context="fragments.PatientSignUp">
 
 
             <TextView
@@ -23,7 +23,7 @@
                 android:layout_height="50sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
-                android:text="Doctor"
+                android:text="Patient"
                 android:textAlignment="center"
                 android:textSize="30dp" />
 
@@ -114,14 +114,14 @@
                 android:hint="Password" />
 
             <EditText
-                android:id="@+id/Address"
+                android:id="@+id/location"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/Password"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:ems="10"
-                android:hint="Address"
+                android:hint="Location"
                 android:inputType="text" />
 
             <Spinner
@@ -134,40 +134,11 @@
                 android:spinnerMode="dropdown"
                 android:text="Gender" />
 
-            <TextView
-                android:id="@+id/Medical_specs"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
-                android:layout_below="@+id/spinner_gender"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:text="Medical Specifications" />
-
-            <Spinner
-                android:id="@+id/spinner_specialization"
-                android:layout_width="300dp"
-                android:layout_height="24dp"
-                android:layout_below="@+id/Medical_specs"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
-                android:spinnerMode="dropdown"
-                android:text="Specialization" />
-
-            <Spinner
-                android:id="@+id/spinner_qualifications"
-                android:layout_width="300dp"
-                android:layout_height="24dp"
-                android:layout_below="@+id/spinner_specialization"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="24dp"
-                android:spinnerMode="dropdown"
-                android:text="Qualifications" />
-
             <Button
                 android:id="@+id/Submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/spinner_qualifications"
+                android:layout_below="@+id/spinner_gender"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
                 android:text="Submit" />

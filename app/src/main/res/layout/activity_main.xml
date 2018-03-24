@@ -6,11 +6,8 @@
     tools:context="in.project.com.upchaar.MainActivity">
 
     <fragment
-        android:id="@+id/doctorSignUp"
-        android:name="Fragments.DoctorSignUp"
+        android:id="@+id/patientSignUp"
+        android:name="Fragments.PatientSignUp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent" />
 </RelativeLayout>
