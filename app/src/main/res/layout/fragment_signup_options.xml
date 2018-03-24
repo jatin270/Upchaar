@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragments.SignupOptions">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SIGN UP"
+        android:textAlignment="center"
+        android:textSize="40dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#0066ae" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You recognize yourself as a ..."
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:layout_marginTop="100dp"
+        android:textColor="#0066ae" />
+
+    <Button
+        android:id="@+id/spatient_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="patient"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#00bbaa"/>
+
+    <Button
+        android:id="@+id/sdoctor_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Doctor"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#00bbaa"/>
+
+    <Button
+        android:id="@+id/shospital_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hospital"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#00bbaa"/>
+
+
+</RelativeLayout>
