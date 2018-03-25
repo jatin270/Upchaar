@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/current_schedule"
+            android:title="• Current Schedule" />
+        <item
+            android:id="@+id/upcoming_schedule"
+            android:title="• Upcoming Schedule" />
+        <item
+            android:id="@+id/update_schedule"
+            android:title="• Update Schedule" />
+    </group>
+</menu>

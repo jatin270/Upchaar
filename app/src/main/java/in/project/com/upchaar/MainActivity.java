@@ -24,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         manager=getSupportFragmentManager();
- //       doctorSignUp  = (DoctorSignUp)manager.findFragmentById(R.id.doctorSignUp);
-        PatientSignUp = (Fragments.PatientSignUp)manager.findFragmentById(R.id.patientSignUp);
+        //doctorSignUp  = (DoctorSignUp)manager.findFragmentById(R.id.doctorSignUp);
+         PatientSignUp = (Fragments.PatientSignUp)manager.findFragmentById(R.id.patientSignUp);
+
+
 
     }
 }
