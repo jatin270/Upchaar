@@ -50,7 +50,9 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
     int PLACE_PICKER_REQUEST = 1;
     Button requestButton;
 
+//    https://www.androidtutorialpoint.com/intermediate/google-maps-draw-path-two-points-using-google-directions-google-map-android-api-v2/
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
