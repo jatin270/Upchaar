@@ -26,5 +26,9 @@ public class MainActivity extends AppCompatActivity {
         manager=getSupportFragmentManager();
         //doctorSignUp  = (DoctorSignUp)manager.findFragmentById(R.id.doctorSignUp);
          PatientSignUp = (Fragments.PatientSignUp)manager.findFragmentById(R.id.patientSignUp);
+
+         Intent intent=new Intent(MainActivity.this, EmergencyActivity.class);
+         startActivity(intent);
+
     }
 }
