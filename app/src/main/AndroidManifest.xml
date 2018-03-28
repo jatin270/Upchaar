@@ -25,6 +25,10 @@
         <activity
             android:name=".DocDashActivity"
             android:label="@string/title_activity_doc_dash"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PatientDash"
+            android:label="@string/title_activity_patient_dash"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
