@@ -8,14 +8,14 @@ public class PatientUser {
 
 
     String patient_desc;
-    int user_id;
+    int user;
 
     public int getUser_id() {
-        return user_id;
+        return user;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUser_id(int user) {
+        this.user = user;
     }
 
     public String getPatient_desc() {

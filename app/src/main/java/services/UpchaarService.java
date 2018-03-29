@@ -3,6 +3,8 @@ package services;
 import java.util.ArrayList;
 
 import models.LoginUser;
+import models.PatientUser;
+import models.Return_Patient_User;
 import models.Return_Signup_User;
 import models.SignUpUser;
 import models.User;
@@ -31,6 +33,9 @@ public interface UpchaarService {
 
     @POST("users/")
     Call<Return_Signup_User> signup(@Body SignUpUser signUpUser);
+
+    @POST("patients/")
+    Call<Return_Patient_User> signup_patient(@Body PatientUser patientUser);
 
 
 

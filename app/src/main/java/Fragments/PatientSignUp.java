@@ -1,6 +1,7 @@
 package Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,9 +22,11 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 import client.RestClient;
+import in.project.com.upchaar.PatientDash;
 import in.project.com.upchaar.R;
 import models.DoctorUser;
 import models.PatientUser;
+import models.Return_Patient_User;
 import models.Return_Signup_User;
 import models.SignUpUser;
 import retrofit2.Call;
@@ -117,11 +120,10 @@ public class PatientSignUp extends DialogFragment {
                 signUpUser.setFirst_name("Bhavya");
                 signUpUser.setLast_name("Gupta");
                 signUpUser.setEmail(Email.getText().toString().trim());
-                signUpUser.setAddress(Location.getText().toString().trim());
                 signUpUser.setRole(1);
-                signUpUser.setGender(gender.getTag().toString().trim());
-
-                signUpUser.setDate_of_birth(dob.year+"-"+dob.month+"-"+dob.date);
+                signUpUser.setPassword(Password.getText().toString().trim());
+                signUpUser.setGender(gender.getSelectedItem().toString().trim());
+                signUpUser.setDate_of_birth("1997-08-23");
 
                 Call<Return_Signup_User> signupCall = libraryServiceAPI.signup(signUpUser);
                 signupCall.enqueue(new Callback<Return_Signup_User>() {
@@ -129,9 +131,35 @@ public class PatientSignUp extends DialogFragment {
                     public void onResponse(Call<Return_Signup_User> call, Response<Return_Signup_User> response) {
                         System.out.println(response.code());
                         if (response.isSuccessful()) {
-                            Return_Signup_User user = response.body();
-                            if (user != null) {
-                                System.out.println(user);
+                            Return_Signup_User muser = response.body();
+                            if (muser != null) {
+                                System.out.println(muser);
+                                PatientUser patientUser=new PatientUser();
+                                patientUser.setUser_id(muser.getId());
+                                patientUser.setPatient_desc("Patient");
+
+
+                                Call<Return_Patient_User> signup_patientCall = libraryServiceAPI.signup_patient(patientUser);
+                                signup_patientCall.enqueue(new Callback<Return_Patient_User>() {
+                                    @Override
+                                    public void onResponse(Call<Return_Patient_User> call, Response<Return_Patient_User> response) {
+                                        System.out.print(response.code());
+                                        if (response.isSuccessful()){
+                                            Return_Patient_User user = response.body();
+                                            if(user!=null){
+                                                Intent intent=new Intent(getActivity(), PatientDash.class);
+                                                startActivity(intent);
+                                            }
+
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Return_Patient_User> call, Throwable t) {
+
+                                    }
+                                });
+
                             }
                         } else {
 
