@@ -42,10 +42,10 @@ public class Home_screen extends Fragment {
         signup_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                mainActivity.chose_role_fragment();
             }
         });
 
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return v;
     }
 }

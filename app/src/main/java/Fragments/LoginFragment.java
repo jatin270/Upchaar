@@ -1,6 +1,7 @@
 package Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -13,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import client.RestClient;
+import in.project.com.upchaar.PatientDash;
 import in.project.com.upchaar.R;
 import models.LoginUser;
 import models.User;
@@ -82,6 +84,16 @@ public class LoginFragment extends DialogFragment {
                     User user1 = response.body();
                     if (user1 != null) {
                         status="Login Successful";
+                        System.out.println(user1);
+                        if(user1.getId()=="1") {
+                            Intent intent = new Intent(getActivity(), PatientDash.class);
+                            startActivity(intent);
+                        }
+                        else
+                            if(user1.getId()=="2"){
+
+                            }
+
                         status_textview.setText(status);
 
                     }

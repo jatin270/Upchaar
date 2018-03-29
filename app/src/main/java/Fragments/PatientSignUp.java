@@ -1,8 +1,10 @@
 package Fragments;
 
 import android.content.Context;
+import android.location.Address;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,9 +24,14 @@ import client.RestClient;
 import in.project.com.upchaar.R;
 import models.DoctorUser;
 import models.PatientUser;
+import models.Return_Signup_User;
+import models.SignUpUser;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import services.UpchaarService;
 
-public class PatientSignUp extends Fragment {
+public class PatientSignUp extends DialogFragment {
 
     private Context context;
     private UpchaarService libraryServiceAPI = RestClient.getClient();
@@ -50,6 +57,7 @@ public class PatientSignUp extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
         PatientUser PatientUser=new PatientUser();
     }
 
@@ -103,8 +111,38 @@ public class PatientSignUp extends Fragment {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check if all values are entered and set the values for DoctorUser
-                // send DoctorUser
+
+                SignUpUser signUpUser=new SignUpUser();
+                signUpUser.setUsername(Username.getText().toString().trim());
+                signUpUser.setFirst_name("Bhavya");
+                signUpUser.setLast_name("Gupta");
+                signUpUser.setEmail(Email.getText().toString().trim());
+                signUpUser.setAddress(Location.getText().toString().trim());
+                signUpUser.setRole(1);
+                signUpUser.setGender(gender.getTag().toString().trim());
+
+                signUpUser.setDate_of_birth(dob.year+"-"+dob.month+"-"+dob.date);
+
+                Call<Return_Signup_User> signupCall = libraryServiceAPI.signup(signUpUser);
+                signupCall.enqueue(new Callback<Return_Signup_User>() {
+                    @Override
+                    public void onResponse(Call<Return_Signup_User> call, Response<Return_Signup_User> response) {
+                        System.out.println(response.code());
+                        if (response.isSuccessful()) {
+                            Return_Signup_User user = response.body();
+                            if (user != null) {
+                                System.out.println(user);
+                            }
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Return_Signup_User> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
             }
         });
 
