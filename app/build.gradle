@@ -41,11 +41,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:11.2.0'
     compile "com.google.android.gms:play-services-location:11.0.1"
     compile 'com.loopj.android:android-async-http:1.4.9'
-
-
-
-
-
+    compile 'com.applandeo:material-calendar-view:1.4.0'
 
 
     testCompile 'junit:junit:4.12'
