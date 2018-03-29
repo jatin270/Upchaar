@@ -1,0 +1,35 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="Fragments.PatientNavSearch">
+
+
+    <TextView
+        android:id="@+id/Filters"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filters : " />
+
+    <CheckBox
+        android:id="@+id/Doctorcheckbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Filters"
+        android:text="Search By Doctor" />
+
+    <EditText
+        android:id="@+id/DoctorFilter"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Doctorcheckbox"
+        android:layout_below="@+id/Filters"
+        android:layout_marginLeft="10dp"
+        android:layout_toEndOf="@+id/Doctorcheckbox"
+        android:layout_toRightOf="@+id/Doctorcheckbox"
+        android:background="@null"
+        android:ems="10"
+        android:hint="Doctor Name"
+        android:inputType="textPersonName"
+        android:visibility="invisible" />
+</RelativeLayout>
