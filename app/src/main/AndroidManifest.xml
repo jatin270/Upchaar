@@ -38,12 +38,11 @@
         <activity
             android:name=".PatientDash"
             android:label="@string/title_activity_patient_dash"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EmergencyActivity" />
         <activity android:name=".SmsActivity" />
         <service android:name="services.MyService"
-            android:exported="false"
-            />
+            android:exported="false" />
         <receiver
             android:name="services.MyAlarmReceiver"
             android:process=":remote" >

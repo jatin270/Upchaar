@@ -11,9 +11,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import Fragments.DoctorSignUp;
+import Fragments.Home_screen;
+import Fragments.LoginFragment;
 import Fragments.PatientSignUp;
 import services.MyAlarmReceiver;
 import services.MyService;
@@ -27,14 +31,27 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager manager;
     private DoctorSignUp doctorSignUp;
     private PatientSignUp PatientSignUp;
+    private Home_screen home_screen;
+    private LoginFragment loginFragment;
+    private Button button ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        manager=getSupportFragmentManager();
-        PatientSignUp = (Fragments.PatientSignUp)manager.findFragmentById(R.id.patientSignUp);
 
+        button = (Button)findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, PatientDash.class);
+                startActivity(intent);
+
+            }
+        });
+
+        manager = getSupportFragmentManager();
 
     }
 
@@ -62,42 +79,45 @@ public class MainActivity extends AppCompatActivity {
         alarm.cancel(pIntent);
     }
 
+    public void display_login_fragment() {
+        loginFragment.show(manager, "login");
+    }
 
-//    // Starts the IntentService
-//    public void onStartService() {
-//        Intent i = new Intent(this, MyService.class);
-//        i.putExtra("foo", "bar");
-//        startService(i);
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        // Register for the particular broadcast based on ACTION string
-//        IntentFilter filter = new IntentFilter(MyService.ACTION);
-//        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
-//        // or `registerReceiver(testReceiver, filter)` for a normal broadcast
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        // Unregister the listener when the application is paused
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(testReceiver);
-//        // or `unregisterReceiver(testReceiver)` for a normal broadcast
-//    }
-//
-//    // Define the callback for what to do when data is received
-//    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            System.out.println("Call returned");
-//            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
-//            if (resultCode == RESULT_OK) {
-//                String resultValue = intent.getStringExtra("resultValue");
-//                Toast.makeText(MainActivity.this, resultValue, Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    };
+    // Starts the IntentService
+    public void onStartService() {
+        Intent i = new Intent(this, MyService.class);
+        i.putExtra("foo", "bar");
+        startService(i);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Register for the particular broadcast based on ACTION string
+        IntentFilter filter = new IntentFilter(MyService.ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
+        // or `registerReceiver(testReceiver, filter)` for a normal broadcast
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Unregister the listener when the application is paused
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(testReceiver);
+        // or `unregisterReceiver(testReceiver)` for a normal broadcast
+    }
+
+    // Define the callback for what to do when data is received
+    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("Call returned");
+            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
+            if (resultCode == RESULT_OK) {
+                String resultValue = intent.getStringExtra("resultValue");
+                Toast.makeText(MainActivity.this, resultValue, Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
 }
+

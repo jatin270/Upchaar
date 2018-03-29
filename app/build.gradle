@@ -5,7 +5,7 @@ android {
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "in.project.com.upchaar"
-        minSdkVersion 14
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
@@ -19,6 +19,19 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+
+
 }
 
 dependencies {
@@ -42,6 +55,8 @@ dependencies {
     compile "com.google.android.gms:play-services-location:11.0.1"
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.applandeo:material-calendar-view:1.4.0'
+    compile 'com.nexmo:client:3.1.0'
+
 
 
     testCompile 'junit:junit:4.12'

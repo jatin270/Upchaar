@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import Fragments.PatientMakeAppointment;
+import Fragments.CalendarViewFragment;
 
 public class PatientDash extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -86,7 +86,7 @@ public class PatientDash extends AppCompatActivity
         Fragment fragment = null;
 
         if (id == R.id.nav_make_appointment) {
-            fragment = new PatientMakeAppointment();
+            fragment = new CalendarViewFragment();
         } else if (id == R.id.nav_search) {
 
         } else if (id == R.id.nav_send) {
