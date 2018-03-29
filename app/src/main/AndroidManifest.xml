@@ -38,8 +38,7 @@
         <activity android:name=".EmergencyActivity" />
         <activity android:name=".SmsActivity" />
         <service android:name="services.MyService"
-            android:exported="false"
-            />
+            android:exported="false" />
         <receiver
             android:name="services.MyAlarmReceiver"
             android:process=":remote" >

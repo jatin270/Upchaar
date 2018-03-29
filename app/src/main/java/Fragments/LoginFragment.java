@@ -3,6 +3,7 @@ package Fragments;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,7 @@ import services.UpchaarService;
  * Created by ( Jatin Bansal ) on 22-03-2018.
  */
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends DialogFragment {
 
     private Context context;
     private UpchaarService libraryServiceAPI = RestClient.getClient();
@@ -39,6 +40,7 @@ public class LoginFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
         user=new LoginUser();
     }
 

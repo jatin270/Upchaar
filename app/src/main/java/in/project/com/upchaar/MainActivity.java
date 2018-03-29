@@ -14,6 +14,8 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import Fragments.DoctorSignUp;
+import Fragments.Home_screen;
+import Fragments.LoginFragment;
 import Fragments.PatientSignUp;
 import services.MyAlarmReceiver;
 import services.MyService;
@@ -27,14 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager manager;
     private DoctorSignUp doctorSignUp;
     private PatientSignUp PatientSignUp;
+    private Home_screen home_screen;
+    private LoginFragment loginFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        manager=getSupportFragmentManager();
-        PatientSignUp = (Fragments.PatientSignUp)manager.findFragmentById(R.id.patientSignUp);
-
+        manager = getSupportFragmentManager();
 
     }
 
@@ -61,6 +63,13 @@ public class MainActivity extends AppCompatActivity {
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pIntent);
     }
+
+    public void display_login_fragment(){
+        loginFragment.show(manager,"login");
+    }
+
+}
+
 
 
 //    // Starts the IntentService
@@ -100,4 +109,3 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    };
 
-}

@@ -2,59 +2,42 @@ package in.project.com.upchaar;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-
-import java.io.BufferedReader;
+import com.nexmo.client.NexmoClient;
+import com.nexmo.client.NexmoClientException;
+import com.nexmo.client.auth.AuthMethod;
+import com.nexmo.client.auth.TokenAuthMethod;
+import com.nexmo.client.sms.SmsSubmissionResult;
+import com.nexmo.client.sms.messages.TextMessage;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
 public class SmsActivity extends AppCompatActivity {
+
+    String NEXMO_API_KEY ="e43bbd7d" ;
+    String NEXMO_API_SECRET ="w7mD1e7IoJCNOu3U" ;
+    String phoneno="9211277070";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sms);
+        AuthMethod auth = new TokenAuthMethod(NEXMO_API_KEY, NEXMO_API_SECRET);
+        NexmoClient client = new NexmoClient(auth);
 
-        String ApiUrl = "YourAuthKey";
-        String user = "user";
-        String pass = "*****";
-        String mobiles = "9999999";
-        String sid = "102234";
-        String message = "Test message";
-
-        URLConnection myURLConnection=null;
-        URL myURL=null;
-        BufferedReader reader=null;
-
-        String encoded_message=URLEncoder.encode(message);
-        String mainUrl="https://broadnet.me/api/xxxx.php?";
-        StringBuilder sbPostData= new StringBuilder(mainUrl);
-        sbPostData.append("user="+user);
-        sbPostData.append("&pass="+pass);
-        sbPostData.append("&mobiles="+mobiles);
-        sbPostData.append("&message="+encoded_message);
-        sbPostData.append("&sid="+sid);
-
-
-        mainUrl = sbPostData.toString();
-        try
-        {
-            myURL = new URL(mainUrl);
-            myURLConnection = myURL.openConnection();
-            myURLConnection.connect();
-            reader= new BufferedReader(new InputStreamReader(myURLConnection.getInputStream()));
-            String response;
-            while ((response = reader.readLine()) != null)
-                Log.d("RESPONSE", ""+response);
-            reader.close();
-        }
-        catch (IOException e)
-        {
+        SmsSubmissionResult[] responses = new SmsSubmissionResult[0];
+        try {
+            responses = client.getSmsClient().submitMessage(new TextMessage(
+                    "Acme Inc",
+                    phoneno,
+                    "A text message sent using the Nexmo SMS API"));
+        } catch (IOException e) {
             e.printStackTrace();
+        } catch (NexmoClientException e) {
+            e.printStackTrace();
+        }
+        for (SmsSubmissionResult response : responses) {
+
+            System.out.println(response);
         }
     }
 }

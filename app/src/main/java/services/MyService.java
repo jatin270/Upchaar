@@ -58,6 +58,9 @@ public class MyService extends IntentService {
             }
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+
+
             }
         });
     }
