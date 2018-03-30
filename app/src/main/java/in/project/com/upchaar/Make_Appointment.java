@@ -1,5 +1,6 @@
 package in.project.com.upchaar;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ public class Make_Appointment extends AppCompatActivity {
     private EditText to_edittext;
     private DatePicker from;
     private DatePicker to;
+    private Button Search;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,7 @@ public class Make_Appointment extends AppCompatActivity {
         to_edittext= (EditText) findViewById(R.id.to_text);
         from= (DatePicker) findViewById(R.id.from_datepicker);
         to= (DatePicker) findViewById(R.id.to_datepicker);
+        Search  = (Button) findViewById(R.id.search);
 
         from_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +47,16 @@ public class Make_Appointment extends AppCompatActivity {
                 to.setClickable(true);
             }
         });
+
+        Search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(Make_Appointment.this,DoctorsListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 }

@@ -101,12 +101,12 @@ public class LoginFragment extends Fragment {
                         status="Login Successful";
                         System.out.println(user1);
                         if(user1.getId()=="1") {
-
+                            Intent intent = new Intent(getActivity(), PatientDash.class);
+                            startActivity(intent);
                             editor.putString("auth-key",user1.getToken());
                             editor.putInt("role", Integer.parseInt(user1.getId()));
                             editor.commit();
-                            Intent intent = new Intent(getActivity(), PatientDash.class);
-                            startActivity(intent);
+
                         }
                         else
                             if(user1.getId()=="2"){

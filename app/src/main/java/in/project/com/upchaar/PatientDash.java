@@ -1,10 +1,7 @@
 package in.project.com.upchaar;
 
 import android.content.Intent;
-<<<<<<< HEAD
-=======
 import android.content.SharedPreferences;
->>>>>>> 45020ce850f168189289e76b29c3e218e9c21010
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -106,14 +103,18 @@ public class PatientDash extends AppCompatActivity
         Fragment fragment = null;
 
         if (id == R.id.nav_make_appointment) {
-
-            Intent intent=new Intent(PatientDash.this,Make_Appointment.class);
-            startActivity(intent);
+                fragment  = new CalendarViewFragment();
+//            Intent intent=new Intent(PatientDash.this,Make_Appointment.class);
+//            startActivity(intent);
 
         } else if (id == R.id.nav_search) {
 
         } else if (id == R.id.logout) {
            // logout();
+            Intent intent=new Intent(PatientDash.this,MainActivity.class);
+            startActivity(intent);
+
+            finish();
         }
 
         if(fragment != null){

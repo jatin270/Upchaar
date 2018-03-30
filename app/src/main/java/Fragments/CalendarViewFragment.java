@@ -2,6 +2,7 @@ package Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcel;
@@ -26,6 +27,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import in.project.com.upchaar.Make_Appointment;
 import in.project.com.upchaar.R;
 
 import static java.util.Calendar.MONDAY;
@@ -76,6 +79,9 @@ public class CalendarViewFragment extends Fragment {
                 DateSelected.day = eventDay.getCalendar().DAY_OF_MONTH;
                 DateSelected.month = eventDay.getCalendar().MONTH;
                 DateSelected.year = eventDay.getCalendar().YEAR;
+
+                Intent intent=new Intent(getActivity(),Make_Appointment.class);
+                startActivity(intent);
             }
         });
 

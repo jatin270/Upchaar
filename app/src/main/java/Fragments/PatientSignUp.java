@@ -1,5 +1,6 @@
 package Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -15,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -49,6 +51,7 @@ public class PatientSignUp extends Fragment {
     EditText Location;
     Spinner gender;
     Button Submit;
+    ProgressDialog progressDialog;
 
     ArrayList<String> genderArray = new ArrayList<String>(Arrays.asList("M", "F","Other"));
     private class dateOfBirth {
@@ -78,6 +81,7 @@ public class PatientSignUp extends Fragment {
         Location = (EditText)view.findViewById(R.id.location);
         gender = (Spinner)view.findViewById(R.id.spinner_gender);
         Submit = (Button)view.findViewById(R.id.Submit);
+        progressDialog=new ProgressDialog(getActivity());
 
 
         setDate.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +121,8 @@ public class PatientSignUp extends Fragment {
             @Override
             public void onClick(View view) {
 
+                progressDialog.setMessage("Registering....");
+                progressDialog.show();
                 SignUpUser signUpUser=new SignUpUser();
                 signUpUser.setUsername(Username.getText().toString().trim());
                 signUpUser.setFirst_name("Bhavya");
@@ -126,6 +132,16 @@ public class PatientSignUp extends Fragment {
                 signUpUser.setPassword(Password.getText().toString().trim());
                 signUpUser.setGender(gender.getSelectedItem().toString().trim());
                 signUpUser.setDate_of_birth(dob.year+"-"+dob.month+"-"+dob.date);
+
+                try {
+                    Thread.sleep(5000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                progressDialog.dismiss();
+
+                Intent intent=new Intent(getActivity(),PatientDash.class);
+                startActivity(intent);
                 Call<Return_Signup_User> signupCall = libraryServiceAPI.signup(signUpUser);
                 signupCall.enqueue(new Callback<Return_Signup_User>() {
                     @Override
