@@ -10,14 +10,7 @@ import android.view.ViewGroup;
 
 import in.project.com.upchaar.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link SelectDepartment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link SelectDepartment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class SelectDepartment extends Fragment {
 
     @Override

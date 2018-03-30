@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import Fragments.DoctorSignUp;
 import Fragments.Home_screen;
+import Fragments.HospitalSignUp;
 import Fragments.LoginFragment;
 import Fragments.PatientSignUp;
 import Fragments.SignupOptions;
@@ -30,53 +32,119 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTransaction trans;
     private FragmentManager manager;
-    private DoctorSignUp doctorSignUp;
-    private PatientSignUp PatientSignUp;
-    private Home_screen home_screen;
-    private LoginFragment loginFragment;
+
+    private View loginFragment;
     private Button button ;
-    private SignupOptions signupOptions;
-    private PatientSignUp patientSignUp;
+    private View signupOptions;
+    private View patientSignUp;
+    private View doctorSignUp;
+    private View hospitalSignUp;
+    private SharedPreferences pref;
+    private  SharedPreferences.Editor editor;
+    private View home_screen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button = (Button)findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, PatientDash.class);
-                startActivity(intent);
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        editor = pref.edit();
 
+
+
+/*
+        String authKey=pref.getString("auth-key","null");
+        if(!authKey.equals("null")){
+            int id=pref.getInt("role",-1);
+            if(id==-1){
+                display_login_fragment();
             }
-        });
+            else{
+                if(id==1){
+                    Intent intent=new Intent(MainActivity.this,PatientDash.class);
+                    startActivity(intent);
+                }
+                else if(id==2){
+                    Intent intent=new Intent(MainActivity.this,DocDashActivity.class);
+                    startActivity(intent);
+                }else
+                    if(id==3){
 
+                }
+            }
+        }
+*/
         manager = getSupportFragmentManager();
-        loginFragment=new LoginFragment();
-        signupOptions=new SignupOptions();
-        patientSignUp=new PatientSignUp();
+
+
+        home_screen=findViewById(R.id.home_screen_fragment);
+        loginFragment=findViewById(R.id.login_fragment);
+        loginFragment.setVisibility(View.INVISIBLE);
+        signupOptions=findViewById(R.id.signup_choose_fragment);
+        signupOptions.setVisibility(View.INVISIBLE);
+        patientSignUp=findViewById(R.id.signup_patient_fragment);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        doctorSignUp=findViewById(R.id.doctor_signup_fragment);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp=findViewById(R.id.hospital_signup_fragments);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
 
     }
 
     public void display_login_fragment(){
-        loginFragment.show(manager,"login");
+        loginFragment.setVisibility(View.VISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        signupOptions.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
+
     }
 
     public void chose_role_fragment(){
+      signupOptions.setVisibility(View.VISIBLE);
+      home_screen.setVisibility(View.INVISIBLE);
+      patientSignUp.setVisibility(View.INVISIBLE);
+      loginFragment.setVisibility(View.INVISIBLE);
+      doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
 
-        signupOptions.show(manager,"roles");
 
     }
 
     public void display_signup_patient(){
-        trans=manager.beginTransaction();
-        trans.remove(signupOptions);
-        trans.commit();
-        patientSignUp.show(manager,"Patient_Signup");
+
+        signupOptions.setVisibility(View.INVISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.VISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
 
     }
+
+    public void display_signup_doctor(){
+        signupOptions.setVisibility(View.INVISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.VISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
+
+    }
+
+    public void display_signup_hospital(){
+        signupOptions.setVisibility(View.INVISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.VISIBLE);
+
+
+    }
+
 
 
     // Setup a recurring alarm every half hour
@@ -114,21 +182,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // Register for the particular broadcast based on ACTION string
         IntentFilter filter = new IntentFilter(MyService.ACTION);
         LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
-        // or `registerReceiver(testReceiver, filter)` for a normal broadcast
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        // Unregister the listener when the application is paused
         LocalBroadcastManager.getInstance(this).unregisterReceiver(testReceiver);
-        // or `unregisterReceiver(testReceiver)` for a normal broadcast
     }
 
-    // Define the callback for what to do when data is received
     private BroadcastReceiver testReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -140,5 +203,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     };
+
+
 }
 

@@ -24,6 +24,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="Doctor"
+                android:textColor="#00ccaa"
                 android:textAlignment="center"
                 android:textSize="30dp" />
 
@@ -34,7 +35,8 @@
                 android:layout_height="50sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
-                android:text="Registration"
+                android:textColor="#00ccaa"
+                android:text="Registration Form"
                 android:textAlignment="center"
                 android:textSize="20dp" />
 
@@ -55,7 +57,8 @@
                 android:layout_alignEnd="@+id/DateOfBirthtext"
                 android:layout_alignRight="@+id/DateOfBirthtext"
                 android:layout_alignTop="@+id/DateOfBirthtext"
-                android:text="Set Date" />
+                android:text="Set Date"
+                android:background="#00ccaa"/>
 
             <DatePicker
                 android:id="@+id/editText7"
@@ -128,9 +131,9 @@
                 android:id="@+id/spinner_gender"
                 android:layout_width="300dp"
                 android:layout_height="24dp"
-                android:layout_below="@+id/location"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_alignLeft="@+id/Name"
+                android:layout_alignStart="@+id/Name"
+                android:layout_alignTop="@+id/RegistrationHeading"
                 android:spinnerMode="dropdown"
                 android:text="Gender" />
 
@@ -141,6 +144,7 @@
                 android:layout_below="@+id/spinner_gender"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
+                android:textColor="#00ccaa"
                 android:text="Medical Specifications" />
 
             <Spinner
@@ -167,14 +171,12 @@
                 android:id="@+id/Submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/spinner_qualifications"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="30dp"
+                android:layout_alignLeft="@+id/DoctorHeading"
+                android:layout_alignStart="@+id/DoctorHeading"
+                android:layout_below="@+id/Address"
+                android:layout_marginTop="17dp"
+                android:background="#00ccaa"
                 android:text="Submit" />
-
-
-
-
         </RelativeLayout>
     </LinearLayout>
 

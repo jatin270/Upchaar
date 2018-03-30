@@ -1,10 +1,15 @@
 package in.project.com.upchaar;
 
 import android.content.Intent;
+<<<<<<< HEAD
+=======
+import android.content.SharedPreferences;
+>>>>>>> 45020ce850f168189289e76b29c3e218e9c21010
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,12 +20,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import Fragments.CalendarViewFragment;
 
 public class PatientDash extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +37,9 @@ public class PatientDash extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        editor = pref.edit();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +67,13 @@ public class PatientDash extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+    public void logout(){
+
+        editor.remove("auth-key");
+        editor.remove("role");
+        finish();
     }
 
     @Override
@@ -87,9 +106,9 @@ public class PatientDash extends AppCompatActivity
         Fragment fragment = null;
 
         if (id == R.id.nav_make_appointment) {
-            fragment = new CalendarViewFragment();
-//            Intent intent = new Intent(PatientDash.this, CalendarActivity.class);
-//            startActivity(intent);
+
+            Intent intent=new Intent(PatientDash.this,Make_Appointment.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_search) {
 
@@ -98,7 +117,7 @@ public class PatientDash extends AppCompatActivity
         }
 
         if(fragment != null){
-            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
             ft.replace(R.id.content_frame_patient, fragment);
             ft.commit();

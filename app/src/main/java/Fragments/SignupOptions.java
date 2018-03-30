@@ -14,7 +14,7 @@ import android.widget.Button;
 import in.project.com.upchaar.MainActivity;
 import in.project.com.upchaar.R;
 
-public class SignupOptions extends DialogFragment {
+public class SignupOptions extends Fragment {
 
     private Button spatientbutton;
     private Button sdoctorbutton;
@@ -26,7 +26,6 @@ public class SignupOptions extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
     }
 
     @Nullable
@@ -44,6 +43,21 @@ public class SignupOptions extends DialogFragment {
                 mainActivity.display_signup_patient();
             }
         });
+
+        sdoctorbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.display_signup_doctor();
+            }
+        });
+
+        shospitalbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity.display_signup_hospital();
+            }
+        });
+
 
         return  v;
     }

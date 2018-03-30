@@ -5,7 +5,6 @@
     android:layout_height = "fill_parent"
     android:fillViewport="true"
     android:scrollbars="none">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -15,8 +14,6 @@
             android:layout_height="match_parent"
             android:focusable="false"
             tools:context="fragments.PatientSignUp">
-
-
             <TextView
                 android:id="@+id/DoctorHeading"
                 android:layout_width="wrap_content"
@@ -24,9 +21,9 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="Patient"
+                android:textColor="#00ccaa"
                 android:textAlignment="center"
                 android:textSize="30dp" />
-
 
             <TextView
                 android:id="@+id/RegistrationHeading"
@@ -34,7 +31,8 @@
                 android:layout_height="50sp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
-                android:text="Registration"
+                android:text="Registration Form"
+                android:textColor="#00ccaa"
                 android:textAlignment="center"
                 android:textSize="20dp" />
 
@@ -48,6 +46,16 @@
                 android:inputType="textPersonName"
                 android:hint="Name"/>
 
+            <Button
+                android:id="@+id/set_date_button"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_alignEnd="@+id/DateOfBirthtext"
+                android:layout_alignRight="@+id/DateOfBirthtext"
+                android:layout_alignTop="@+id/DateOfBirthtext"
+                android:text="Set Date"
+                android:background="#00ccaa"/>
+
             <DatePicker
                 android:id="@+id/datePicker"
                 android:layout_width="300dp"
@@ -57,6 +65,7 @@
                 android:layout_below="@+id/Name"
                 android:layout_marginTop="24dp"
                 android:inputType="date"
+                android:datePickerMode="calendar"
                 android:visibility="invisible" />
 
             <Button
@@ -144,11 +153,8 @@
                 android:layout_below="@+id/spinner_gender"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:text="Submit" />
-
-
-
-
+                android:text="Submit"
+                android:background="#00ccaa"/>
         </RelativeLayout>
     </LinearLayout>
 
