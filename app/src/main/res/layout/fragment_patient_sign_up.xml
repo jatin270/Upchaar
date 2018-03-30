@@ -37,14 +37,15 @@
                 android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/Name"
-                android:layout_width="300dp"
+                android:id="@+id/first_Name"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/Email_id"
+                android:layout_alignStart="@+id/Email_id"
                 android:layout_below="@+id/RegistrationHeading"
-                android:layout_centerHorizontal="true"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Name"/>
+                android:hint="First Name"
+                android:inputType="textPersonName" />
 
             <Button
                 android:id="@+id/set_date_button"
@@ -60,9 +61,9 @@
                 android:id="@+id/datePicker"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/Name"
-                android:layout_alignStart="@+id/Name"
-                android:layout_below="@+id/Name"
+                android:layout_alignLeft="@+id/first_Name"
+                android:layout_alignStart="@+id/first_Name"
+                android:layout_below="@+id/first_Name"
                 android:layout_marginTop="24dp"
                 android:inputType="date"
                 android:datePickerMode="calendar"
@@ -83,9 +84,9 @@
                 android:id="@+id/DateOfBirthtext"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/Name"
-                android:layout_alignStart="@+id/Name"
-                android:layout_below="@+id/Name"
+                android:layout_alignLeft="@+id/first_Name"
+                android:layout_alignStart="@+id/first_Name"
+                android:layout_below="@+id/first_Name"
                 android:layout_marginTop="24dp"
                 android:inputType="date"
                 android:hint="Date Of Birth"
@@ -155,6 +156,18 @@
                 android:layout_marginTop="30dp"
                 android:text="Submit"
                 android:background="#00ccaa"/>
+
+            <EditText
+                android:id="@+id/last_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/datePicker"
+                android:layout_toEndOf="@+id/first_Name"
+                android:layout_toRightOf="@+id/first_Name"
+                android:ems="10"
+                android:hint="Last Name"
+                android:inputType="textPersonName"
+                />
         </RelativeLayout>
     </LinearLayout>
 

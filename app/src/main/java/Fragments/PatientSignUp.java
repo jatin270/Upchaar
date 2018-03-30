@@ -1,5 +1,6 @@
 package Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -49,6 +50,9 @@ public class PatientSignUp extends Fragment {
     EditText Location;
     Spinner gender;
     Button Submit;
+    EditText first_name;
+    EditText last_name;
+    ProgressDialog progressDialog;
 
     ArrayList<String> genderArray = new ArrayList<String>(Arrays.asList("M", "F","Other"));
     private class dateOfBirth {
@@ -67,9 +71,9 @@ public class PatientSignUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_patient_sign_up, container, false);
-        DOB = (DatePicker)view.findViewById(R.id.editText7);
-        setDate = (Button)view.findViewById(R.id.set_date_button);
-        DOB = (DatePicker)view.findViewById(R.id.datePicker);
+        DOB = view.findViewById(R.id.editText7);
+        setDate = view.findViewById(R.id.set_date_button);
+        DOB = view.findViewById(R.id.datePicker);
         setDate = (Button)view.findViewById(R.id.set_date);
         DOBtext = (EditText)view.findViewById(R.id.DateOfBirthtext);
         Email = (EditText)view.findViewById(R.id.Email_id);
@@ -78,6 +82,9 @@ public class PatientSignUp extends Fragment {
         Location = (EditText)view.findViewById(R.id.location);
         gender = (Spinner)view.findViewById(R.id.spinner_gender);
         Submit = (Button)view.findViewById(R.id.Submit);
+        first_name=view.findViewById(R.id.first_Name);
+        last_name=view.findViewById(R.id.last_Name);
+        progressDialog=new ProgressDialog(getActivity());
 
 
         setDate.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +99,8 @@ public class PatientSignUp extends Fragment {
                 Password.setVisibility(View.INVISIBLE);
                 Username.setVisibility(View.INVISIBLE);
                 gender.setVisibility(View.INVISIBLE);
-                Location.setVisibility(View.INVISIBLE);
+//                Location.setVisibility(View.INVISIBLE);
                 Submit.setVisibility(View.INVISIBLE);
-
-
             }
         });
 
@@ -119,8 +124,8 @@ public class PatientSignUp extends Fragment {
 
                 SignUpUser signUpUser=new SignUpUser();
                 signUpUser.setUsername(Username.getText().toString().trim());
-                signUpUser.setFirst_name("Bhavya");
-                signUpUser.setLast_name("Gupta");
+                signUpUser.setFirst_name(first_name.getText().toString().trim());
+                signUpUser.setLast_name(last_name.getText().toString().trim());
                 signUpUser.setEmail(Email.getText().toString().trim());
                 signUpUser.setRole(1);
                 signUpUser.setPassword(Password.getText().toString().trim());

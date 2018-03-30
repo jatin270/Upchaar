@@ -33,7 +33,6 @@ public class Make_Appointment extends AppCompatActivity {
                 from.setVisibility(View.VISIBLE);
                 from.setClickable(true);
 
-
             }
         });
 
