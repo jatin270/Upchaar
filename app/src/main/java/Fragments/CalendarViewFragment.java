@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.applandeo.materialcalendarview.DatePicker;
 import com.applandeo.materialcalendarview.EventDay;
 import com.applandeo.materialcalendarview.builders.DatePickerBuilder;
 import com.applandeo.materialcalendarview.listeners.OnDayClickListener;
+import com.applandeo.materialcalendarview.listeners.OnSelectDateListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -26,6 +28,12 @@ public class CalendarViewFragment extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
+    public class AppointmentDate {
+        int day;
+        int month;
+        int year;
+    };
+    AppointmentDate DateSelected;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -44,12 +52,21 @@ public class CalendarViewFragment extends Fragment {
             @Override
             public void onDayClick(EventDay eventDay) {
                 Calendar clickedDayCalendar = eventDay.getCalendar();
+                Log.d("date","" + eventDay.getCalendar().toString());
+                DateSelected.day = eventDay.getCalendar().DAY_OF_MONTH;
+                DateSelected.month = eventDay.getCalendar().MONTH;
+                DateSelected.year = eventDay.getCalendar().YEAR;
             }
         });
-
-//        DatePickerBuilder builder = new DatePickerBuilder(this, listener)
-//                .pickerType(CalendarView.ONE_DAY_PICKER);
+//        OnSelectDateListener listener = new OnSelectDateListener() {
+//            @Override
+//            public void onSelect(List<Calendar> calendars) {
+//                Log.d("date","" + calendars.toString());
+//            }
+//        };
 //
+//        DatePickerBuilder builder = new DatePickerBuilder(this.getActivity(), listener)
+//                .pickerType(CalendarView.ONE_DAY_PICKER);
 //        DatePicker datePicker = builder.build();
 //        datePicker.show();
 

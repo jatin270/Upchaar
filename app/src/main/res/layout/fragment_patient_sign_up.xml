@@ -48,17 +48,8 @@
                 android:inputType="textPersonName"
                 android:hint="Name"/>
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_alignEnd="@+id/DateOfBirthtext"
-                android:layout_alignRight="@+id/DateOfBirthtext"
-                android:layout_alignTop="@+id/DateOfBirthtext"
-                android:text="Set Date" />
-
             <DatePicker
-                android:id="@+id/editText7"
+                android:id="@+id/datePicker"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_alignLeft="@+id/Name"
@@ -67,6 +58,17 @@
                 android:layout_marginTop="24dp"
                 android:inputType="date"
                 android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/set_date"
+                android:layout_width="wrap_content"
+                android:layout_height="38dp"
+                android:layout_alignEnd="@+id/DateOfBirthtext"
+                android:layout_alignRight="@+id/DateOfBirthtext"
+                android:layout_alignTop="@+id/DateOfBirthtext"
+                android:contextClickable="true"
+                android:text="Set Date" />
+
 
             <EditText
                 android:id="@+id/DateOfBirthtext"
@@ -79,6 +81,7 @@
                 android:inputType="date"
                 android:hint="Date Of Birth"
                 android:visibility="visible" />
+
 
             <EditText
                 android:id="@+id/Email_id"

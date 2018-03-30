@@ -19,6 +19,7 @@ import Fragments.DoctorSignUp;
 import Fragments.Home_screen;
 import Fragments.LoginFragment;
 import Fragments.PatientSignUp;
+import Fragments.SignupOptions;
 import services.MyAlarmReceiver;
 import services.MyService;
 
@@ -34,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private Home_screen home_screen;
     private LoginFragment loginFragment;
     private Button button ;
-
+    private SignupOptions signupOptions;
+    private PatientSignUp patientSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
         manager = getSupportFragmentManager();
+        loginFragment=new LoginFragment();
+        signupOptions=new SignupOptions();
+        patientSignUp=new PatientSignUp();
 
     }
+
+    public void display_login_fragment(){
+        loginFragment.show(manager,"login");
+    }
+
+    public void chose_role_fragment(){
+
+        signupOptions.show(manager,"roles");
+
+    }
+
+    public void display_signup_patient(){
+        trans=manager.beginTransaction();
+        trans.remove(signupOptions);
+        trans.commit();
+        patientSignUp.show(manager,"Patient_Signup");
+
+    }
+
 
     // Setup a recurring alarm every half hour
     public void scheduleAlarm() {
@@ -79,9 +103,6 @@ public class MainActivity extends AppCompatActivity {
         alarm.cancel(pIntent);
     }
 
-    public void display_login_fragment() {
-        loginFragment.show(manager, "login");
-    }
 
     // Starts the IntentService
     public void onStartService() {
