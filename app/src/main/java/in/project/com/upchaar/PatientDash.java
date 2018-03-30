@@ -89,8 +89,8 @@ public class PatientDash extends AppCompatActivity
             fragment = new CalendarViewFragment();
         } else if (id == R.id.nav_search) {
 
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.logout) {
+            logout();
         }
 
         if(fragment != null){

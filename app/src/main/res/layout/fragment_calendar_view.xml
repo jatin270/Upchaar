@@ -10,6 +10,7 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:datePicker="true"
         app:todayLabelColor="@color/wallet_holo_blue_light"/>
 
         />
