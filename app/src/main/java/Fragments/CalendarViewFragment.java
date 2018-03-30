@@ -112,6 +112,7 @@ public class CalendarViewFragment extends Fragment {
 
         try {
             calendarView.setDate(convertedDate);
+
         } catch (OutOfDateRangeException e) {
             e.printStackTrace();
         }

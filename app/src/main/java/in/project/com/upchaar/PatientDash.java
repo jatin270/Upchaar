@@ -1,5 +1,6 @@
 package in.project.com.upchaar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -87,10 +88,13 @@ public class PatientDash extends AppCompatActivity
 
         if (id == R.id.nav_make_appointment) {
             fragment = new CalendarViewFragment();
+//            Intent intent = new Intent(PatientDash.this, CalendarActivity.class);
+//            startActivity(intent);
+
         } else if (id == R.id.nav_search) {
 
         } else if (id == R.id.logout) {
-            logout();
+           // logout();
         }
 
         if(fragment != null){

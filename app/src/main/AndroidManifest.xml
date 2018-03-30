@@ -16,10 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCu41WM-VQ-oexueq_OCNe7Z0IaI12WGLA" />
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,13 +41,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EmergencyActivity" />
         <activity android:name=".SmsActivity" />
-        <service android:name="services.MyService"
+
+        <service
+            android:name="services.MyService"
             android:exported="false" />
+
         <receiver
             android:name="services.MyAlarmReceiver"
-            android:process=":remote" >
-        </receiver>
+            android:process=":remote"></receiver>
 
+        <activity
+            android:name=".CalendarActivity"
+            android:label="@string/title_activity_calendar"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
