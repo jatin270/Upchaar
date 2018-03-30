@@ -40,7 +40,7 @@
             android:label="@string/title_activity_patient_dash"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".EmergencyActivity" />
-        <activity android:name=".SmsActivity" />
+
         <service android:name="services.MyService"
             android:exported="false" />
         <receiver

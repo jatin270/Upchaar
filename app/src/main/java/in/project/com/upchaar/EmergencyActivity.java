@@ -76,7 +76,6 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             }
         });
 
-
     }
 
     @Override
@@ -202,6 +201,8 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             }
         }
     }
+
+
     @Override
     public void onRequestPermissionsResult(int requestCode,
                                            String permissions[], int[] grantResults) {

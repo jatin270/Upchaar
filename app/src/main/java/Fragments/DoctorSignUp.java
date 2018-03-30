@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.text.InputType;
 import android.util.Log;
@@ -29,7 +30,7 @@ import models.DoctorUser;
 import services.UpchaarService;
 
 
-public class DoctorSignUp extends Fragment {
+public class DoctorSignUp extends DialogFragment {
 
     private Context context;
     private UpchaarService libraryServiceAPI = RestClient.getClient();

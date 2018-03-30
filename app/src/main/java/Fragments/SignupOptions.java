@@ -45,6 +45,14 @@ public class SignupOptions extends DialogFragment {
             }
         });
 
+        sdoctorbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mainActivity.display_signup_doctor();
+            }
+        });
+
+
         return  v;
     }
 }

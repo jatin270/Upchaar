@@ -60,7 +60,7 @@ public class PatientSignUp extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
+      //  setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
         PatientUser PatientUser=new PatientUser();
     }
 
@@ -69,7 +69,7 @@ public class PatientSignUp extends DialogFragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_patient_sign_up, container, false);
         DOB = (DatePicker)view.findViewById(R.id.editText7);
-        setDate = (Button)view.findViewById(R.id.button);
+        setDate = (Button)view.findViewById(R.id.set_date_button);
         DOBtext = (EditText)view.findViewById(R.id.DateOfBirthtext);
         Email = (EditText)view.findViewById(R.id.Email_id);
         Password = (EditText)view.findViewById(R.id.Password);
@@ -123,8 +123,7 @@ public class PatientSignUp extends DialogFragment {
                 signUpUser.setRole(1);
                 signUpUser.setPassword(Password.getText().toString().trim());
                 signUpUser.setGender(gender.getSelectedItem().toString().trim());
-                signUpUser.setDate_of_birth("1997-08-23");
-
+                signUpUser.setDate_of_birth(dob.year+"-"+dob.month+"-"+dob.date);
                 Call<Return_Signup_User> signupCall = libraryServiceAPI.signup(signUpUser);
                 signupCall.enqueue(new Callback<Return_Signup_User>() {
                     @Override
@@ -150,7 +149,6 @@ public class PatientSignUp extends DialogFragment {
                                                 Intent intent=new Intent(getActivity(), PatientDash.class);
                                                 startActivity(intent);
                                             }
-
                                         }
                                     }
 

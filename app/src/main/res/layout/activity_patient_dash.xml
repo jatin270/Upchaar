@@ -21,5 +21,16 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_patient_dash"
         app:menu="@menu/activity_patient_dash_drawer" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/logout_button"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true" />
+</RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

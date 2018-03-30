@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
@@ -28,21 +29,51 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentTransaction trans;
     private FragmentManager manager;
-    private DoctorSignUp doctorSignUp;
-    private PatientSignUp PatientSignUp;
-    private Home_screen home_screen;
+
     private LoginFragment loginFragment;
     private SignupOptions signupOptions;
     private PatientSignUp patientSignUp;
+    private DoctorSignUp doctorSignUp;
+    private SharedPreferences pref;
+    private  SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        editor = pref.edit();
+
+        String authKey=pref.getString("auth-key","null");
+        if(!authKey.equals("null")){
+            int id=pref.getInt("role",-1);
+            if(id==-1){
+                display_login_fragment();
+            }
+            else{
+                if(id==1){
+                    Intent intent=new Intent(MainActivity.this,PatientDash.class);
+                    startActivity(intent);
+                }
+                else if(id==2){
+                    Intent intent=new Intent(MainActivity.this,DocDashActivity.class);
+                    startActivity(intent);
+                }else
+                    if(id==3){
+
+                }
+            }
+        }
+
+
         manager = getSupportFragmentManager();
         loginFragment=new LoginFragment();
         signupOptions=new SignupOptions();
         patientSignUp=new PatientSignUp();
+        doctorSignUp=new DoctorSignUp();
+//        Intent intent=new Intent(MainActivity.this,EmergencyActivity.class);
+//        startActivity(intent);
 
     }
 
@@ -51,9 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void chose_role_fragment(){
-
         signupOptions.show(manager,"roles");
-
     }
 
     public void display_signup_patient(){
@@ -61,7 +90,14 @@ public class MainActivity extends AppCompatActivity {
         trans.remove(signupOptions);
         trans.commit();
         patientSignUp.show(manager,"Patient_Signup");
+    }
 
+    public void display_signup_doctor(){
+
+        doctorSignUp.show(manager,"Doctor_Signup");
+        trans=manager.beginTransaction();
+        trans.remove(signupOptions);
+        trans.commit();
     }
 
 

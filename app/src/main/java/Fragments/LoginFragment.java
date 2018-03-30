@@ -1,7 +1,9 @@
 package Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -37,6 +39,11 @@ public class LoginFragment extends DialogFragment {
     private EditText password;
     private Button login_button;
     private TextView status_textview;
+    private ProgressDialog mprogress;
+
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +51,10 @@ public class LoginFragment extends DialogFragment {
         setRetainInstance(true);
         setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
         user=new LoginUser();
+        mprogress=new ProgressDialog(getActivity());
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        editor = pref.edit();
+
     }
 
     @Nullable
@@ -75,6 +86,9 @@ public class LoginFragment extends DialogFragment {
     }
 
     public void login(){
+        mprogress.setMessage("Logging........");
+        mprogress.show();
+
         Call<User> loginRequest = libraryServiceAPI.login(user);
         loginRequest.enqueue(new Callback<User>() {
             @Override
@@ -84,8 +98,13 @@ public class LoginFragment extends DialogFragment {
                     User user1 = response.body();
                     if (user1 != null) {
                         status="Login Successful";
+                        mprogress.dismiss();
                         System.out.println(user1);
                         if(user1.getId()=="1") {
+
+                            editor.putString("auth-key",user1.getToken());
+                            editor.putInt("role", Integer.parseInt(user1.getId()));
+                            editor.commit();
                             Intent intent = new Intent(getActivity(), PatientDash.class);
                             startActivity(intent);
                         }
@@ -93,7 +112,6 @@ public class LoginFragment extends DialogFragment {
                             if(user1.getId()=="2"){
 
                             }
-
                         status_textview.setText(status);
 
                     }

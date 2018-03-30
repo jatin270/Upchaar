@@ -13,11 +13,9 @@ public class PatientUser {
     public int getUser_id() {
         return user;
     }
-
     public void setUser_id(int user) {
         this.user = user;
     }
-
     public String getPatient_desc() {
         return patient_desc;
     }
