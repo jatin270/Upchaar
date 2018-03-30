@@ -30,7 +30,7 @@ import models.DoctorUser;
 import services.UpchaarService;
 
 
-public class DoctorSignUp extends DialogFragment {
+public class DoctorSignUp extends Fragment {
 
     private Context context;
     private UpchaarService libraryServiceAPI = RestClient.getClient();

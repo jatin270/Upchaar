@@ -16,11 +16,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCu41WM-VQ-oexueq_OCNe7Z0IaI12WGLA" />
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,24 +32,30 @@
         <activity
             android:name=".DoctorsListActivity"
             android:label="@string/title_activity_doctors_list"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DocDashActivity"
             android:label="@string/title_activity_doc_dash"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".PatientDash"
             android:label="@string/title_activity_patient_dash"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EmergencyActivity" />
 
-        <service android:name="services.MyService"
+        <service
+            android:name="services.MyService"
             android:exported="false" />
+
         <receiver
             android:name="services.MyAlarmReceiver"
-            android:process=":remote" >
-        </receiver>
+            android:process=":remote" />
 
+        <activity android:name=".CalenderActivity" />
+        <activity android:name=".Make_Appointment"></activity>
     </application>
 
 </manifest>

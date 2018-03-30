@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="in.project.com.upchaar.Make_Appointment">
+
+    <Button
+        android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/from_text"
+        android:layout_alignRight="@+id/from_text"
+        android:layout_alignTop="@+id/from_text"
+        android:background="#00ccaa"
+        android:text="Set Date" />
+
+    <DatePicker
+        android:id="@+id/from_datepicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:inputType="date"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/from_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="From"
+        android:inputType="date"
+        android:visibility="visible" />
+
+    <EditText
+        android:id="@+id/to_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/from"
+        android:ems="10"
+        android:hint="To"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/from"
+        android:layout_alignStart="@+id/from"
+        android:layout_below="@+id/from"
+        android:text="Button" />
+
+    <DatePicker
+        android:id="@+id/to_datepicker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/to_text"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/Department"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/to"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="Department"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/Department"
+        android:ems="10"
+        android:hint="Location"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/location"
+        android:layout_marginEnd="70dp"
+        android:layout_marginRight="70dp"
+        android:layout_toLeftOf="@+id/to"
+        android:layout_toStartOf="@+id/to"
+        android:text="Search" />
+
+</RelativeLayout>

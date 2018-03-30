@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import services.UpchaarService;
 
-public class PatientSignUp extends DialogFragment {
+public class PatientSignUp extends Fragment {
 
     private Context context;
     private UpchaarService libraryServiceAPI = RestClient.getClient();
@@ -60,8 +61,6 @@ public class PatientSignUp extends DialogFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-      //  setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
-        PatientUser PatientUser=new PatientUser();
     }
 
     @Override
@@ -70,6 +69,8 @@ public class PatientSignUp extends DialogFragment {
         View view =  inflater.inflate(R.layout.fragment_patient_sign_up, container, false);
         DOB = (DatePicker)view.findViewById(R.id.editText7);
         setDate = (Button)view.findViewById(R.id.set_date_button);
+        DOB = (DatePicker)view.findViewById(R.id.datePicker);
+        setDate = (Button)view.findViewById(R.id.set_date);
         DOBtext = (EditText)view.findViewById(R.id.DateOfBirthtext);
         Email = (EditText)view.findViewById(R.id.Email_id);
         Password = (EditText)view.findViewById(R.id.Password);
@@ -82,6 +83,7 @@ public class PatientSignUp extends DialogFragment {
         setDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 DOB.setVisibility(View.VISIBLE);
                 DOB.setClickable(true);
                 DOBtext.setVisibility(View.INVISIBLE);
@@ -157,7 +159,6 @@ public class PatientSignUp extends DialogFragment {
 
                                     }
                                 });
-
                             }
                         } else {
 

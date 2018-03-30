@@ -12,10 +12,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import Fragments.DoctorSignUp;
 import Fragments.Home_screen;
+import Fragments.HospitalSignUp;
 import Fragments.LoginFragment;
 import Fragments.PatientSignUp;
 import Fragments.SignupOptions;
@@ -30,12 +33,15 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction trans;
     private FragmentManager manager;
 
-    private LoginFragment loginFragment;
-    private SignupOptions signupOptions;
-    private PatientSignUp patientSignUp;
-    private DoctorSignUp doctorSignUp;
+    private View loginFragment;
+    private Button button ;
+    private View signupOptions;
+    private View patientSignUp;
+    private View doctorSignUp;
+    private View hospitalSignUp;
     private SharedPreferences pref;
     private  SharedPreferences.Editor editor;
+    private View home_screen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         editor = pref.edit();
 
+
+
+/*
         String authKey=pref.getString("auth-key","null");
         if(!authKey.equals("null")){
             int id=pref.getInt("role",-1);
@@ -65,40 +74,77 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
-
-
+*/
         manager = getSupportFragmentManager();
-        loginFragment=new LoginFragment();
-        signupOptions=new SignupOptions();
-        patientSignUp=new PatientSignUp();
-        doctorSignUp=new DoctorSignUp();
-//        Intent intent=new Intent(MainActivity.this,EmergencyActivity.class);
-//        startActivity(intent);
+
+
+        home_screen=findViewById(R.id.home_screen_fragment);
+        loginFragment=findViewById(R.id.login_fragment);
+        loginFragment.setVisibility(View.INVISIBLE);
+        signupOptions=findViewById(R.id.signup_choose_fragment);
+        signupOptions.setVisibility(View.INVISIBLE);
+        patientSignUp=findViewById(R.id.signup_patient_fragment);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        doctorSignUp=findViewById(R.id.doctor_signup_fragment);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp=findViewById(R.id.hospital_signup_fragments);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
 
     }
 
     public void display_login_fragment(){
-        loginFragment.show(manager,"login");
+        loginFragment.setVisibility(View.VISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        signupOptions.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
+
     }
 
     public void chose_role_fragment(){
-        signupOptions.show(manager,"roles");
+      signupOptions.setVisibility(View.VISIBLE);
+      home_screen.setVisibility(View.INVISIBLE);
+      patientSignUp.setVisibility(View.INVISIBLE);
+      loginFragment.setVisibility(View.INVISIBLE);
+      doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
+
+
     }
 
     public void display_signup_patient(){
-        trans=manager.beginTransaction();
-        trans.remove(signupOptions);
-        trans.commit();
-        patientSignUp.show(manager,"Patient_Signup");
+
+        signupOptions.setVisibility(View.INVISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.VISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
+
     }
 
     public void display_signup_doctor(){
+        signupOptions.setVisibility(View.INVISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.VISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
 
-        doctorSignUp.show(manager,"Doctor_Signup");
-        trans=manager.beginTransaction();
-        trans.remove(signupOptions);
-        trans.commit();
     }
+
+    public void display_signup_hospital(){
+        signupOptions.setVisibility(View.INVISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.VISIBLE);
+
+
+    }
+
 
 
     // Setup a recurring alarm every half hour
@@ -126,44 +172,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    // Starts the IntentService
+    public void onStartService() {
+        Intent i = new Intent(this, MyService.class);
+        i.putExtra("foo", "bar");
+        startService(i);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        IntentFilter filter = new IntentFilter(MyService.ACTION);
+        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(testReceiver);
+    }
+
+    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.out.println("Call returned");
+            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
+            if (resultCode == RESULT_OK) {
+                String resultValue = intent.getStringExtra("resultValue");
+                Toast.makeText(MainActivity.this, resultValue, Toast.LENGTH_SHORT).show();
+            }
+        }
+    };
+
+
 }
-
-
-
-//    // Starts the IntentService
-//    public void onStartService() {
-//        Intent i = new Intent(this, MyService.class);
-//        i.putExtra("foo", "bar");
-//        startService(i);
-//    }
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        // Register for the particular broadcast based on ACTION string
-//        IntentFilter filter = new IntentFilter(MyService.ACTION);
-//        LocalBroadcastManager.getInstance(this).registerReceiver(testReceiver, filter);
-//        // or `registerReceiver(testReceiver, filter)` for a normal broadcast
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        // Unregister the listener when the application is paused
-//        LocalBroadcastManager.getInstance(this).unregisterReceiver(testReceiver);
-//        // or `unregisterReceiver(testReceiver)` for a normal broadcast
-//    }
-//
-//    // Define the callback for what to do when data is received
-//    private BroadcastReceiver testReceiver = new BroadcastReceiver() {
-//        @Override
-//        public void onReceive(Context context, Intent intent) {
-//            System.out.println("Call returned");
-//            int resultCode = intent.getIntExtra("resultCode", RESULT_CANCELED);
-//            if (resultCode == RESULT_OK) {
-//                String resultValue = intent.getStringExtra("resultValue");
-//                Toast.makeText(MainActivity.this, resultValue, Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//    };
 

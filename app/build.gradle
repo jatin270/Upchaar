@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "26.0.2"
     defaultConfig {
         applicationId "in.project.com.upchaar"
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion 15
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -54,9 +54,14 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:11.2.0'
     compile "com.google.android.gms:play-services-location:11.0.1"
     compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.applandeo:material-calendar-view:1.4.0'
     compile 'com.nexmo:client:3.1.0'
+    compile 'com.github.npanigrahy:Custom-Calendar-View:v1.0'
 
 
 
     testCompile 'junit:junit:4.12'
+}
+repositories {
+    maven { url "https://jitpack.io" }
 }

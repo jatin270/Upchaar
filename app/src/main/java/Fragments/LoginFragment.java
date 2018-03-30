@@ -29,7 +29,7 @@ import services.UpchaarService;
  * Created by ( Jatin Bansal ) on 22-03-2018.
  */
 
-public class LoginFragment extends DialogFragment {
+public class LoginFragment extends Fragment {
 
     private Context context;
     private UpchaarService libraryServiceAPI = RestClient.getClient();
@@ -49,10 +49,9 @@ public class LoginFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
-        setStyle(STYLE_NO_FRAME, android.R.style.Theme_Holo_Light);
         user=new LoginUser();
         mprogress=new ProgressDialog(getActivity());
-        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
+        pref = getActivity().getSharedPreferences("MyPref", 0); // 0 - for private mode
         editor = pref.edit();
 
     }
@@ -93,12 +92,13 @@ public class LoginFragment extends DialogFragment {
         loginRequest.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
+                mprogress.dismiss();
+
                 System.out.println(response.code());
                 if (response.isSuccessful()) {
                     User user1 = response.body();
                     if (user1 != null) {
                         status="Login Successful";
-                        mprogress.dismiss();
                         System.out.println(user1);
                         if(user1.getId()=="1") {
 
