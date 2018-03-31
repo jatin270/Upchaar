@@ -57,7 +57,11 @@
         <activity android:name=".CalenderActivity" />
         <activity android:name=".Make_Appointment" />
         <activity android:name=".ScheduledDoctor" />
-        <activity android:name=".AppointmentConfirmed"></activity>
+        <activity android:name=".AppointmentConfirmed" />
+        <activity
+            android:name=".RescheduleRecommendationList"
+            android:label="@string/title_activity_reschedule_recommendation_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
