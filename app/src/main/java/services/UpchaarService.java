@@ -39,7 +39,7 @@ public interface UpchaarService {
     @GET("doctors/")
     Call<ArrayList<DoctorUser>> listdoctor();
 
-    @GET("hospital/")
+    @GET("hospitals/")
     Call<ArrayList<HospitalUser>> listhospital();
 
     //Post Request-------------------------------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ public interface UpchaarService {
     @POST("doctors/")
     Call<DoctorUser> signup_doctor(@Body DoctorUser doctorUser);
 
-    @POST("hospital/")
+    @POST("hospitals/")
     Call<HospitalUser> signup_hospital(@Body HospitalUser hospitalUser);
 
 
