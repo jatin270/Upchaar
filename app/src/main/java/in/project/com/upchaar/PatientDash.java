@@ -103,9 +103,8 @@ public class PatientDash extends AppCompatActivity
         Fragment fragment = null;
 
         if (id == R.id.nav_make_appointment) {
-                fragment  = new CalendarViewFragment();
-//            Intent intent=new Intent(PatientDash.this,Make_Appointment.class);
-//            startActivity(intent);
+            Intent intent=new Intent(PatientDash.this,Make_Appointment.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_search) {
 

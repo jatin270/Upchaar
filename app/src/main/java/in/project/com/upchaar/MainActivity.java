@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         bypasser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,DoctorsListActivity.class);
+                Intent intent=new Intent(MainActivity.this,DocDashActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -83,7 +83,6 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else
                     if(id==3){
-
                 }
             }
         }
@@ -105,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         agreement=findViewById(R.id.agreement_fragment);
         agreement.setVisibility(View.INVISIBLE);
 
+        scheduleAlarm();
     }
 
     public void display_login_fragment(){
@@ -115,16 +115,14 @@ public class MainActivity extends AppCompatActivity {
         signupOptions.setVisibility(View.INVISIBLE);
         hospitalSignUp.setVisibility(View.INVISIBLE);
         agreement.setVisibility(View.INVISIBLE);
-
-
     }
 
     public void chose_role_fragment(){
-      signupOptions.setVisibility(View.VISIBLE);
-      home_screen.setVisibility(View.INVISIBLE);
-      patientSignUp.setVisibility(View.INVISIBLE);
-      loginFragment.setVisibility(View.INVISIBLE);
-      doctorSignUp.setVisibility(View.INVISIBLE);
+        signupOptions.setVisibility(View.VISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
         hospitalSignUp.setVisibility(View.INVISIBLE);
         agreement.setVisibility(View.INVISIBLE);
 
@@ -238,4 +236,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-

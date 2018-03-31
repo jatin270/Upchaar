@@ -7,6 +7,7 @@ import models.DaySchedule;
 import models.DoctorUser;
 import models.HospitalUser;
 import models.LoginUser;
+import models.MessageTemplate;
 import models.PatientUser;
 import models.Return_Patient_User;
 import models.Return_Signup_User;
@@ -17,7 +18,6 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 /**
@@ -42,6 +42,18 @@ public interface UpchaarService {
     @GET("hospitals/")
     Call<ArrayList<HospitalUser>> listhospital();
 
+    @GET("users/")
+    Call<ArrayList<User>> listuser();
+
+    @GET("notifications")
+    Call<ArrayList<models.Notification>> listnotification();
+
+
+//
+//    @GET("notifications/")
+//    Call<ArrayList<Notification>>
+
+
     //Post Request-------------------------------------------------------------------------------------------------------------------------
     @POST("login/")
     Call<User> login(@Body LoginUser user);
@@ -58,6 +70,11 @@ public interface UpchaarService {
     @POST("hospitals/")
     Call<HospitalUser> signup_hospital(@Body HospitalUser hospitalUser);
 
+    @POST("appointment/")
+    Call<AppointmentModel> register_appoint(@Body AppointmentModel appointmentModel);
+
+    @POST("send-sms/")
+    Call<MessageTemplate> sendmessageandnotification(@Body MessageTemplate messageTemplate);
 
 
 

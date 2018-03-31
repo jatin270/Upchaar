@@ -1,22 +1,26 @@
 package services;
 
-import android.app.Activity;
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v4.content.LocalBroadcastManager;
+import android.content.SharedPreferences;
 import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
-import cz.msebera.android.httpclient.Header;
+import java.util.ArrayList;
+
+import client.RestClient;
+import in.project.com.upchaar.MainActivity;
 import in.project.com.upchaar.R;
+import models.Notification;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -32,6 +36,9 @@ public class MyService extends IntentService {
         super("test-service");
     }
 
+    public static final String MyPREFERENCES = "MyPrefs" ;
+
+    SharedPreferences sharedpreferences;
 
     @Override
     public void onCreate() {
@@ -41,27 +48,56 @@ public class MyService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         Log.i("MyTestService", "Service running");
-        aClient.get(this, url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                NotificationCompat.Builder mBuilder =
-                        new NotificationCompat.Builder(MyService.this);
+        UpchaarService libraryServiceAPI = RestClient.getClient();
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        Call<ArrayList<Notification>> listBooksCall = libraryServiceAPI.listnotification();
+        final SharedPreferences.Editor editor = sharedpreferences.edit();
 
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.androidauthority.com/"));
-                PendingIntent pendingIntent = PendingIntent.getActivity(MyService.this, 0, intent, 0);
-                mBuilder.setContentIntent(pendingIntent);
-                mBuilder.setSmallIcon(R.drawable.bg_cta_button);
-                mBuilder.setContentTitle("Upchaar");
-                mBuilder.setContentText("Hello World!");
-                NotificationManager mNotificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                mNotificationManager.notify(001, mBuilder.build());
+        listBooksCall.enqueue(new Callback<ArrayList<Notification>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Notification>> call, Response<ArrayList<Notification>> response) {
+                if (response.isSuccessful()) {
+                    int curr_user=sharedpreferences.getInt("current",-1);
+
+                    ArrayList<Notification> book = response.body();
+                    // Set response Books as listed layout
+                    System.out.println(book);
+                    for(int i=0;i<book.size();i++){
+
+                        if(book.get(i).getUser_id()!=curr_user)
+                            continue;
+
+                        int flag=sharedpreferences.getInt(String.valueOf(book.get(i).getId()),-1);
+                        if(flag==-1){
+                            NotificationCompat.Builder builder =
+                                    (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
+                                            .setSmallIcon(R.drawable.bg_cta_button)
+                                            .setContentTitle("Alert")
+                                            .setContentText(book.get(i).getMessage());
+
+                            Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
+                            PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent,
+                                    PendingIntent.FLAG_UPDATE_CURRENT);
+                            builder.setContentIntent(contentIntent);
+
+                            // Add as notification
+                            NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                            manager.notify(0, builder.build());
+
+                            editor.putInt(String.valueOf(book.get(i).getId()),1);
+                            editor.commit();
+                        }
+                    }
+
+                } else {
+                }
             }
             @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-
+            public void onFailure(Call<ArrayList<Notification>> call, Throwable t) {
 
             }
         });
+
+
     }
 }

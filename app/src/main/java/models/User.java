@@ -6,7 +6,7 @@ package models;
 
 public class User {
 
-    private String id;
+    private int id;
     private String username;
     private String  first_name;
     private String last_name;
@@ -22,11 +22,11 @@ public class User {
         this.role_id = role_id;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

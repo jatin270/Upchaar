@@ -22,4 +22,39 @@
         app:headerLayout="@layout/nav_header_doc_dash"
         app:menu="@menu/activity_doc_dash_drawer" />
 
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/take_leave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/from"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/from"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:text="Take a leave" />
+
+    <EditText
+        android:id="@+id/from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/to"
+        android:layout_alignEnd="@+id/to"
+        android:layout_alignRight="@+id/to"
+        android:layout_marginBottom="55dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:hint="Enter Day from..." />
+
+    <EditText
+        android:id="@+id/to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:hint="Enter Day to..." />
+</RelativeLayout>
 </android.support.v4.widget.DrawerLayout>

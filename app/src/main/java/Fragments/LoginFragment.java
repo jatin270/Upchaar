@@ -101,16 +101,15 @@ public class LoginFragment extends Fragment {
                         System.out.println(user1);
                         Intent intent = new Intent(getActivity(), PatientDash.class);
                         startActivity(intent);
-                        if(user1.getId()=="1") {
+                        if(user1.getId()==1) {
                             intent = new Intent(getActivity(), PatientDash.class);
                             startActivity(intent);
                             editor.putString("auth-key",user1.getToken());
-                            editor.putInt("role", Integer.parseInt(user1.getId()));
+                            editor.putInt("current", user1.getId());
                             editor.commit();
-
                         }
                         else
-                            if(user1.getId()=="2"){
+                            if(user1.getId()==2){
 
                             }
                         status_textview.setText(status);

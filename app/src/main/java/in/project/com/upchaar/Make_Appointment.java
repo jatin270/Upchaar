@@ -39,7 +39,7 @@ public class Make_Appointment extends AppCompatActivity {
         apply_filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Make_Appointment.this,ScheduledDoctor.class);
+                Intent intent=new Intent(Make_Appointment.this,DoctorsListActivity.class);
                 intent.putExtra("location","Kolkata");
                 startActivity(intent);
             }
