@@ -102,17 +102,24 @@ public class PatientDash extends AppCompatActivity
         int id = item.getItemId();
         Fragment fragment = null;
 
+        if(id==R.id.notifications_list){
+            Intent intent=new Intent(PatientDash.this,Notification_list.class);
+            startActivity(intent);
+        }
         if (id == R.id.nav_make_appointment) {
             Intent intent=new Intent(PatientDash.this,Make_Appointment.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_search) {
+        }else if(id==R.id.Emergency){
+            Intent intent=new Intent(PatientDash.this,EmergencyActivity.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.nav_search) {
 
         } else if (id == R.id.logout) {
            // logout();
             Intent intent=new Intent(PatientDash.this,MainActivity.class);
             startActivity(intent);
-
             finish();
         }
 

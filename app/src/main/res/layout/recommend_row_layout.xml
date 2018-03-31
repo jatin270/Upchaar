@@ -12,39 +12,49 @@
         android:layout_height="65dp"
         android:src="@drawable/doctoricon"
         />
+
     <TextView
-        android:id="@+id/hname"
+        android:id="@+id/token"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Token Number"
+        android:layout_marginLeft="150dp"
+        android:textColor="#00ccaa" />
+
+    <TextView
+        android:id="@+id/hospital"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hospital Name"
+        android:layout_marginLeft="45dp"
         android:textColor="#00ccaa"
-        android:layout_marginLeft="50dp"
         tools:text="HospitalName" />
 
     <TextView
-        android:id="@+id/dname"
+        android:id="@+id/doctor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Doctor Name"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="45dp"
         android:textColor="#00ccaa" />
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID"
-        android:layout_marginLeft="160dp"
+        android:text="Time"
+        android:layout_marginLeft="260dp"
         android:textColor="#00ccaa" />
 
     <TextView
-        android:id="@+id/qual"
+        android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="160dp"
-        android:text="Qualification"
+        android:layout_marginLeft="260dp"
+        android:text="Date"
         android:textColor="#00ccaa" />
+
 
 </RelativeLayout>

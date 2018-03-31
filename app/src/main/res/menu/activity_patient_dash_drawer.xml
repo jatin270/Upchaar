@@ -5,6 +5,10 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/notifications_list"
+            android:icon="@android:drawable/ic_menu_add"
+            android:title="Notification" />
+        <item
             android:id="@+id/nav_make_appointment"
             android:icon="@android:drawable/ic_menu_add"
             android:title="Make An Appointment" />
@@ -12,15 +16,21 @@
             android:id="@+id/nav_search"
             android:icon="@android:drawable/ic_menu_search"
             android:title="Appoitment History" />
+
+        <item
+            android:id="@+id/Emergency"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Emergency" />
+        <item
+            android:id="@+id/Upcoming_appointment"
+            android:icon="@android:drawable/ic_menu_search"
+            android:title="Upcoming Appointments" />
+
         <item
         android:id="@+id/logout"
         android:icon="@android:drawable/ic_menu_search"
         android:title="Logout" />
 
-        <item
-            android:id="@+id/Upcoming_appointment"
-            android:icon="@android:drawable/ic_menu_search"
-            android:title="Upcoming Appointments" />
     </group>
 
     <item android:title="Communicate">

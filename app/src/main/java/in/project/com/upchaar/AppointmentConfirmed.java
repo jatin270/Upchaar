@@ -1,9 +1,13 @@
 package in.project.com.upchaar;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.support.v7.app.NotificationCompat;
 import android.widget.TextView;
 import client.RestClient;
 import models.MessageTemplate;
@@ -57,6 +61,23 @@ public class AppointmentConfirmed extends AppCompatActivity {
                 t.printStackTrace();
             }
         });
+
+
+        NotificationCompat.Builder builder =
+                (NotificationCompat.Builder) new NotificationCompat.Builder(getApplicationContext())
+                        .setSmallIcon(R.drawable.bg_cta_button)
+                        .setContentTitle("Appointment")
+                        .setContentText("Your Appointment has been confirmed.");
+
+        Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent,
+                PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
+
 
     }
 }

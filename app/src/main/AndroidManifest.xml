@@ -61,7 +61,8 @@
         <activity
             android:name=".RescheduleRecommendationList"
             android:label="@string/title_activity_reschedule_recommendation_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Notification_list"></activity>
     </application>
 
 </manifest>

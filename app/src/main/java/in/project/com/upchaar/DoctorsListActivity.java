@@ -104,7 +104,7 @@ public class DoctorsListActivity extends AppCompatActivity {
             list.add(doctor);
 
             simpleList = (ListView)findViewById(R.id.list_view);
-            customAdapter = new CustomAdapter(list,getApplicationContext(),DoctorsListActivity.this);
+            customAdapter = new CustomAdapter(list,getApplicationContext());
             simpleList.setAdapter(customAdapter);
 
         }
@@ -123,8 +123,6 @@ public class DoctorsListActivity extends AppCompatActivity {
     private void receiveDaySchedules() {
 
         UpchaarService libraryServiceAPI = RestClient.getClient();
-
-
         Call<ArrayList<DaySchedule>> listschedules = libraryServiceAPI.listschedules();
         listschedules.enqueue(new Callback<ArrayList<DaySchedule>>() {
             @Override
