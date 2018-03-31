@@ -55,7 +55,9 @@
             android:process=":remote" />
 
         <activity android:name=".CalenderActivity" />
-        <activity android:name=".Make_Appointment"></activity>
+        <activity android:name=".Make_Appointment" />
+        <activity android:name=".ScheduledDoctor" />
+        <activity android:name=".AppointmentConfirmed"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package Fragments;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -25,8 +26,16 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 import client.RestClient;
+import in.project.com.upchaar.MainActivity;
 import in.project.com.upchaar.R;
 import models.DoctorUser;
+import models.PatientUser;
+import models.Return_Patient_User;
+import models.Return_Signup_User;
+import models.SignUpUser;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import services.UpchaarService;
 
 
@@ -52,6 +61,8 @@ public class DoctorSignUp extends Fragment {
     Spinner spinner_qualification;
     Spinner gender;
     Button Submit;
+    EditText name;
+    ProgressDialog progressDialog;
     private String OtherText ="";
     CustomSpinnerAdapter adapter_qual;
     CustomSpinnerAdapter adapter;
@@ -74,6 +85,7 @@ public class DoctorSignUp extends Fragment {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
         DoctorUser=new DoctorUser();
+        progressDialog=new ProgressDialog(getActivity());
     }
 
     @Nullable
@@ -87,6 +99,7 @@ public class DoctorSignUp extends Fragment {
         setDate = (Button)view.findViewById(R.id.button);
         DOBtext = (EditText)view.findViewById(R.id.DateOfBirthtext);
         Email = (EditText)view.findViewById(R.id.Email_id);
+        name=view.findViewById(R.id.Name);
         Password = (EditText)view.findViewById(R.id.Password);
         Username = (EditText)view.findViewById(R.id.Username);
         Address = (EditText)view.findViewById(R.id.Address);
@@ -135,8 +148,67 @@ public class DoctorSignUp extends Fragment {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check if all values are entered and set the values for DoctorUser
-                // send DoctorUser
+
+                progressDialog.setMessage("Registering....");
+                progressDialog.show();
+                SignUpUser signUpUser=new SignUpUser();
+                signUpUser.setUsername(Username.getText().toString().trim());
+                signUpUser.setFirst_name(name.getText().toString().trim());
+                signUpUser.setLast_name("User");
+                signUpUser.setEmail(Email.getText().toString().trim());
+                signUpUser.setRole(2);
+                signUpUser.setPassword(Password.getText().toString().trim());
+                signUpUser.setGender("M");
+                signUpUser.setDate_of_birth(dob.year+"-"+dob.month+"-"+dob.date);
+
+
+                Call<Return_Signup_User> signupCall = libraryServiceAPI.signup(signUpUser);
+                signupCall.enqueue(new Callback<Return_Signup_User>() {
+                    @Override
+                    public void onResponse(Call<Return_Signup_User> call, Response<Return_Signup_User> response) {
+                        System.out.println(response.code());
+                        if (response.isSuccessful()) {
+                            Return_Signup_User muser = response.body();
+                            if (muser != null) {
+                                System.out.println(muser);
+                                progressDialog.dismiss();
+                                DoctorUser doctorUser=new DoctorUser();
+                                doctorUser.setUser(muser.getId());
+                                doctorUser.setDepartment("Cardiology");
+                                doctorUser.setEducation("Mbbs");
+                                doctorUser.setTime_slot("00:00:20");
+
+                                Call<DoctorUser> signup_patientCall = libraryServiceAPI.signup_doctor(doctorUser);
+                                signup_patientCall.enqueue(new Callback<DoctorUser>() {
+                                    @Override
+                                    public void onResponse(Call<DoctorUser> call, Response<DoctorUser> response) {
+                                        System.out.print(response.code());
+                                        if (response.isSuccessful()){
+                                            DoctorUser user = response.body();
+                                            if(user!=null){
+                                                MainActivity mainActivity= (MainActivity) getActivity();
+                                                mainActivity.show_agreement();
+                                            }
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<DoctorUser> call, Throwable t) {
+
+                                    }
+                                });
+                            }
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Return_Signup_User> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+
             }
         });
         adapter = new CustomSpinnerAdapter(this.getActivity(), R.layout.spinner_item, arrayForSpinner, defaultTextForSpinner1);

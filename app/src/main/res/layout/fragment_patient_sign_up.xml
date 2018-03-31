@@ -8,12 +8,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <RelativeLayout
-            xmlns:tools="http://schemas.android.com/tools"
+
+        <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:focusable="false"
             tools:context="fragments.PatientSignUp">
+
             <TextView
                 android:id="@+id/DoctorHeading"
                 android:layout_width="wrap_content"
@@ -21,8 +22,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="5dp"
                 android:text="Patient"
-                android:textColor="#00ccaa"
                 android:textAlignment="center"
+                android:textColor="#00ccaa"
                 android:textSize="30dp" />
 
             <TextView
@@ -32,19 +33,18 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="40dp"
                 android:text="Registration Form"
-                android:textColor="#00ccaa"
                 android:textAlignment="center"
+                android:textColor="#00ccaa"
                 android:textSize="20dp" />
 
             <EditText
-                android:id="@+id/first_Name"
-                android:layout_width="150dp"
+                android:id="@+id/Name"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/Email_id"
-                android:layout_alignStart="@+id/Email_id"
                 android:layout_below="@+id/RegistrationHeading"
+                android:layout_centerHorizontal="true"
                 android:ems="10"
-                android:hint="First Name"
+                android:hint="Name"
                 android:inputType="textPersonName" />
 
             <Button
@@ -54,19 +54,19 @@
                 android:layout_alignEnd="@+id/DateOfBirthtext"
                 android:layout_alignRight="@+id/DateOfBirthtext"
                 android:layout_alignTop="@+id/DateOfBirthtext"
-                android:text="Set Date"
-                android:background="#00ccaa"/>
+                android:background="#00ccaa"
+                android:text="Set Date" />
 
             <DatePicker
                 android:id="@+id/datePicker"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/first_Name"
-                android:layout_alignStart="@+id/first_Name"
-                android:layout_below="@+id/first_Name"
+                android:layout_alignLeft="@+id/Name"
+                android:layout_alignStart="@+id/Name"
+                android:layout_below="@+id/Name"
                 android:layout_marginTop="24dp"
-                android:inputType="date"
                 android:datePickerMode="calendar"
+                android:inputType="date"
                 android:visibility="invisible" />
 
             <Button
@@ -84,12 +84,12 @@
                 android:id="@+id/DateOfBirthtext"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/first_Name"
-                android:layout_alignStart="@+id/first_Name"
-                android:layout_below="@+id/first_Name"
+                android:layout_alignLeft="@+id/Name"
+                android:layout_alignStart="@+id/Name"
+                android:layout_below="@+id/Name"
                 android:layout_marginTop="24dp"
-                android:inputType="date"
                 android:hint="Date Of Birth"
+                android:inputType="date"
                 android:visibility="visible" />
 
 
@@ -101,19 +101,19 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:ems="10"
-                android:inputType="textEmailAddress"
-                android:hint="E-mail Address" />
+                android:hint="E-mail Address"
+                android:inputType="textEmailAddress" />
 
             <EditText
                 android:id="@+id/Username"
-                android:layout_height="wrap_content"
                 android:layout_width="300dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/Email_id"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:ems="10"
-                android:inputType="textPersonName"
-                android:hint="Username"/>
+                android:hint="Username"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/Password"
@@ -123,8 +123,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="24dp"
                 android:ems="10"
-                android:inputType="textPassword"
-                android:hint="Password" />
+                android:hint="Password"
+                android:inputType="textPassword" />
 
             <EditText
                 android:id="@+id/location"
@@ -154,20 +154,9 @@
                 android:layout_below="@+id/spinner_gender"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-                android:text="Submit"
-                android:background="#00ccaa"/>
+                android:background="#00ccaa"
+                android:text="Submit" />
 
-            <EditText
-                android:id="@+id/last_Name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/datePicker"
-                android:layout_toEndOf="@+id/first_Name"
-                android:layout_toRightOf="@+id/first_Name"
-                android:ems="10"
-                android:hint="Last Name"
-                android:inputType="textPersonName"
-                />
         </RelativeLayout>
     </LinearLayout>
 

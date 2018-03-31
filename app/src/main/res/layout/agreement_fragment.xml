@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:text="TERMS AND CONDITIONS"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:textColor="#0077EE"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="80dp"
+        android:text="In no event shall , nor any of its officers, directors and employees, shall be held liable for anything arising out of or in any way connected with your use of this Website whether such liability is under contract, including its officers, directors and employees shall not be held liable for any indirect, consequential or special liability arising out of or in any way related to your use of this Website."
+        android:textSize="20dp"
+        android:textAlignment="center"
+        android:textColor="#00ccaa"/>
+
+    <CheckBox
+        android:id="@+id/agreemen_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agree to continue"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="25dp"
+        android:textColor="#0077ee"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="proceed"
+        android:layout_marginTop="400dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="#00ccaa"/>
+
+
+</RelativeLayout>
+

@@ -237,6 +237,8 @@ public class EmergencyActivity extends AppCompatActivity implements OnMapReadyCa
             // permissions this app might request
         }
     }
+
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK) {

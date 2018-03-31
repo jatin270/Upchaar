@@ -16,14 +16,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 
 import client.RestClient;
+import in.project.com.upchaar.MainActivity;
 import in.project.com.upchaar.PatientDash;
 import in.project.com.upchaar.R;
 import models.DoctorUser;
@@ -31,6 +36,7 @@ import models.PatientUser;
 import models.Return_Patient_User;
 import models.Return_Signup_User;
 import models.SignUpUser;
+import models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -51,8 +57,9 @@ public class PatientSignUp extends Fragment {
     Spinner gender;
     Button Submit;
     EditText first_name;
-    EditText last_name;
     ProgressDialog progressDialog;
+//    private DatabaseReference mdatabase;
+
 
     ArrayList<String> genderArray = new ArrayList<String>(Arrays.asList("M", "F","Other"));
     private class dateOfBirth {
@@ -74,17 +81,18 @@ public class PatientSignUp extends Fragment {
         DOB = view.findViewById(R.id.editText7);
         setDate = view.findViewById(R.id.set_date_button);
         DOB = view.findViewById(R.id.datePicker);
-        setDate = (Button)view.findViewById(R.id.set_date);
-        DOBtext = (EditText)view.findViewById(R.id.DateOfBirthtext);
-        Email = (EditText)view.findViewById(R.id.Email_id);
-        Password = (EditText)view.findViewById(R.id.Password);
-        Username = (EditText)view.findViewById(R.id.Username);
-        Location = (EditText)view.findViewById(R.id.location);
-        gender = (Spinner)view.findViewById(R.id.spinner_gender);
-        Submit = (Button)view.findViewById(R.id.Submit);
-        first_name=view.findViewById(R.id.first_Name);
-        last_name=view.findViewById(R.id.last_Name);
+        setDate = view.findViewById(R.id.set_date);
+        DOBtext = view.findViewById(R.id.DateOfBirthtext);
+        Email = view.findViewById(R.id.Email_id);
+        Password = view.findViewById(R.id.Password);
+        Username = view.findViewById(R.id.Username);
+        Location = view.findViewById(R.id.location);
+        gender = view.findViewById(R.id.spinner_gender);
+        Submit = view.findViewById(R.id.Submit);
+        first_name=view.findViewById(R.id.Name);
+
         progressDialog=new ProgressDialog(getActivity());
+//        mdatabase= FirebaseDatabase.getInstance().getReference().child("Patients");
 
 
         setDate.setOnClickListener(new View.OnClickListener() {
@@ -122,15 +130,26 @@ public class PatientSignUp extends Fragment {
             @Override
             public void onClick(View view) {
 
+                progressDialog.setMessage("Registering....");
+                progressDialog.show();
                 SignUpUser signUpUser=new SignUpUser();
                 signUpUser.setUsername(Username.getText().toString().trim());
                 signUpUser.setFirst_name(first_name.getText().toString().trim());
-                signUpUser.setLast_name(last_name.getText().toString().trim());
+                signUpUser.setLast_name("User");
                 signUpUser.setEmail(Email.getText().toString().trim());
                 signUpUser.setRole(1);
                 signUpUser.setPassword(Password.getText().toString().trim());
                 signUpUser.setGender(gender.getSelectedItem().toString().trim());
                 signUpUser.setDate_of_birth(dob.year+"-"+dob.month+"-"+dob.date);
+//                DatabaseReference newref=mdatabase.push();
+//                newref.child("username").setValue(Username.getText().toString().trim());
+//                newref.child("Name").setValue(first_name.getText().toString().trim());
+//                newref.child("Email").setValue(Email.getText().toString().trim());
+//                newref.child("role").setValue(1);
+//                newref.child("password").setValue(Password.getText().toString().trim());
+//
+
+
                 Call<Return_Signup_User> signupCall = libraryServiceAPI.signup(signUpUser);
                 signupCall.enqueue(new Callback<Return_Signup_User>() {
                     @Override
@@ -140,11 +159,9 @@ public class PatientSignUp extends Fragment {
                             Return_Signup_User muser = response.body();
                             if (muser != null) {
                                 System.out.println(muser);
+                                progressDialog.dismiss();
                                 PatientUser patientUser=new PatientUser();
                                 patientUser.setUser_id(muser.getId());
-                                patientUser.setPatient_desc("Patient");
-
-
                                 Call<Return_Patient_User> signup_patientCall = libraryServiceAPI.signup_patient(patientUser);
                                 signup_patientCall.enqueue(new Callback<Return_Patient_User>() {
                                     @Override
@@ -153,8 +170,8 @@ public class PatientSignUp extends Fragment {
                                         if (response.isSuccessful()){
                                             Return_Patient_User user = response.body();
                                             if(user!=null){
-                                                Intent intent=new Intent(getActivity(), PatientDash.class);
-                                                startActivity(intent);
+                                                MainActivity mainActivity= (MainActivity) getActivity();
+                                                mainActivity.show_agreement();
                                             }
                                         }
                                     }
