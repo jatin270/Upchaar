@@ -43,8 +43,6 @@ public class Day_Details_Fragment extends Fragment {
         ns=v.findViewById(R.id.ns);
         et=v.findViewById(R.id.et);
         es=v.findViewById(R.id.es);
-
-
         return v;
     }
 

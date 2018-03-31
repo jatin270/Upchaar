@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         bypasser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,ScheduledDoctor.class);
+                Intent intent=new Intent(MainActivity.this,DoctorsListActivity.class);
                 startActivity(intent);
                 finish();
             }
