@@ -40,10 +40,10 @@ public class DoctorsListActivity extends AppCompatActivity {
         // list  = list of objects sent by api
 
 
-//        Doctor doc = new Doctor("Abhinav", "Medanta", "10:00", "cardiologist");
-//        list.add(doc);
-//        doc = new Doctor("Abhinav", "Medanta", "10:00", "cardiologist");
-//        list.add(doc);
+        Doctor doc = new Doctor("Abhinav", "Medanta", "10:00", "cardiologist");
+        list.add(doc);
+        doc = new Doctor("Abhinav", "Medanta", "10:00", "cardiologist");
+        list.add(doc);
 
         customAdapter = new CustomAdapter(list,getApplicationContext());
         simpleList.setAdapter(customAdapter);

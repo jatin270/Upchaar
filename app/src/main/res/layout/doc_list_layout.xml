@@ -7,12 +7,18 @@
     android:background="@drawable/border"
     android:padding="20dp">
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="65dp"
+        android:src="@drawable/doctoricon"
+        />
     <TextView
         android:id="@+id/hname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hospital Name"
         android:textColor="#00ccaa"
+        android:layout_marginLeft="50dp"
         tools:text="HospitalName" />
 
     <TextView
@@ -21,13 +27,14 @@
         android:layout_height="wrap_content"
         android:text="Doctor Name"
         android:layout_marginTop="40dp"
+        android:layout_marginLeft="50dp"
         android:textColor="#00ccaa" />
 
     <TextView
         android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Time"
+        android:text="ID"
         android:layout_marginLeft="160dp"
         android:textColor="#00ccaa" />
 

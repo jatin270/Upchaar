@@ -7,12 +7,18 @@
     android:background="@drawable/border"
     android:padding="20dp">
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="65dp"
+        android:src="@drawable/doctoricon"
+        />
+
     <TextView
         android:id="@+id/token"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:text="Token Number"
+        android:layout_marginLeft="150dp"
         android:textColor="#00ccaa" />
 
     <TextView
@@ -20,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hospital Name"
+        android:layout_marginLeft="45dp"
         android:textColor="#00ccaa"
         tools:text="HospitalName" />
 
@@ -29,6 +36,7 @@
         android:layout_height="wrap_content"
         android:text="Doctor Name"
         android:layout_marginTop="40dp"
+        android:layout_marginLeft="45dp"
         android:textColor="#00ccaa" />
 
     <TextView
