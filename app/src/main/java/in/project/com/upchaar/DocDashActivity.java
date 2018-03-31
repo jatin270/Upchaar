@@ -1,6 +1,7 @@
 package in.project.com.upchaar;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,7 @@ import android.view.MenuItem;
 import Fragments.DocDashCurrentApp;
 import Fragments.DocDashUpcomingApp;
 import Fragments.DocDashUpdate;
+import Fragments.TakeLeave;
 
 public class DocDashActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -94,11 +96,26 @@ public class DocDashActivity extends AppCompatActivity
         }
 
         else if (id == R.id.upcoming_schedule) {
-            fragment = new DocDashUpcomingApp();
+            Intent intent=new Intent(DocDashActivity.this,UpcomingActivity.class);
+            startActivity(intent);
+
+            finish();
         }
 
         else if (id == R.id.update_schedule) {
             fragment = new DocDashUpdate();
+        }
+
+        else if(id == R.id.takeleave){
+            fragment = new TakeLeave();
+        }
+
+        else if (id == R.id.logout) {
+        // logout();
+        Intent intent=new Intent(DocDashActivity.this,MainActivity.class);
+        startActivity(intent);
+
+        finish();
         }
 
         if(fragment != null){
