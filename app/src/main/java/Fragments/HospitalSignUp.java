@@ -1,5 +1,6 @@
 package Fragments;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,8 +15,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import client.RestClient;
+import in.project.com.upchaar.MainActivity;
 import in.project.com.upchaar.R;
+import models.DoctorUser;
 import models.HospitalUser;
+import models.Return_Signup_User;
+import models.SignUpUser;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import services.UpchaarService;
 
 public class HospitalSignUp extends Fragment {
@@ -30,14 +38,12 @@ public class HospitalSignUp extends Fragment {
     EditText Location;
     EditText Beds;
     Button Submit;
-
+    ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+        progressDialog=new ProgressDialog(getActivity());
     }
 
     @Override
@@ -56,8 +62,66 @@ public class HospitalSignUp extends Fragment {
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // check if all values are entered and set the values for DoctorUser
-                // send DoctorUser
+                progressDialog.setMessage("Registering....");
+                progressDialog.show();
+                SignUpUser signUpUser=new SignUpUser();
+                signUpUser.setUsername(Username.getText().toString().trim());
+                signUpUser.setFirst_name("Hospital_Name");
+                signUpUser.setLast_name("User");
+                signUpUser.setEmail(Email.getText().toString().trim());
+                signUpUser.setRole(3);
+                signUpUser.setPassword(Password.getText().toString().trim());
+                signUpUser.setGender("M");
+                signUpUser.setDate_of_birth("1997-08-16");
+
+                Call<Return_Signup_User> signupCall = libraryServiceAPI.signup(signUpUser);
+                signupCall.enqueue(new Callback<Return_Signup_User>() {
+                    @Override
+                    public void onResponse(Call<Return_Signup_User> call, Response<Return_Signup_User> response) {
+                        System.out.println(response.code());
+                        if (response.isSuccessful()) {
+                            Return_Signup_User muser = response.body();
+                            if (muser != null) {
+                                System.out.println(muser);
+                                progressDialog.dismiss();
+                                HospitalUser hospitalUser=new HospitalUser();
+                                hospitalUser.setUser(muser.getId());
+                                hospitalUser.setNo_of_beds(10);
+                                hospitalUser.setHospital_name("Mbbs");
+                                hospitalUser.setLatitude(String.valueOf(98.3));
+                                hospitalUser.setLongitude(String.valueOf(76.3));
+
+                                Call<HospitalUser> signup_hospital = libraryServiceAPI.signup_hospital(hospitalUser);
+                                signup_hospital.enqueue(new Callback<HospitalUser>() {
+                                    @Override
+                                    public void onResponse(Call<HospitalUser> call, Response<HospitalUser> response) {
+                                        System.out.print(response.code());
+                                        if (response.isSuccessful()){
+                                            HospitalUser user = response.body();
+                                            if(user!=null){
+                                                MainActivity mainActivity= (MainActivity) getActivity();
+                                                mainActivity.show_agreement();
+                                            }
+                                        }
+                                    }
+                                    @Override
+                                    public void onFailure(Call<HospitalUser> call, Throwable t) {
+
+                                    }
+                                });
+                            }
+                        } else {
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Return_Signup_User> call, Throwable t) {
+                        t.printStackTrace();
+                    }
+                });
+
+
             }
         });
 

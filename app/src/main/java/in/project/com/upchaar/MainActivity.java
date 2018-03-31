@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import Fragments.Agreement;
 import Fragments.DoctorSignUp;
 import Fragments.Home_screen;
 import Fragments.HospitalSignUp;
@@ -41,8 +42,10 @@ public class MainActivity extends AppCompatActivity {
     private View doctorSignUp;
     private View hospitalSignUp;
     private SharedPreferences pref;
+    private View agreement;
     private  SharedPreferences.Editor editor;
     private View home_screen;
+    private Button bypasser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
         editor = pref.edit();
+        bypasser= (Button) findViewById(R.id.bypasser);
+
+        bypasser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,ScheduledDoctor.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
         String authKey=pref.getString("auth-key","null");
@@ -96,6 +109,8 @@ public class MainActivity extends AppCompatActivity {
         doctorSignUp.setVisibility(View.INVISIBLE);
         hospitalSignUp=findViewById(R.id.hospital_signup_fragments);
         hospitalSignUp.setVisibility(View.INVISIBLE);
+        agreement=findViewById(R.id.agreement_fragment);
+        agreement.setVisibility(View.INVISIBLE);
 
     }
 
@@ -107,6 +122,8 @@ public class MainActivity extends AppCompatActivity {
         patientSignUp.setVisibility(View.INVISIBLE);
         signupOptions.setVisibility(View.INVISIBLE);
         hospitalSignUp.setVisibility(View.INVISIBLE);
+        agreement.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -117,6 +134,8 @@ public class MainActivity extends AppCompatActivity {
       loginFragment.setVisibility(View.INVISIBLE);
       doctorSignUp.setVisibility(View.INVISIBLE);
         hospitalSignUp.setVisibility(View.INVISIBLE);
+        agreement.setVisibility(View.INVISIBLE);
+
 
 
     }
@@ -129,6 +148,7 @@ public class MainActivity extends AppCompatActivity {
         loginFragment.setVisibility(View.INVISIBLE);
         doctorSignUp.setVisibility(View.INVISIBLE);
         hospitalSignUp.setVisibility(View.INVISIBLE);
+        agreement.setVisibility(View.INVISIBLE);
 
     }
 
@@ -139,6 +159,8 @@ public class MainActivity extends AppCompatActivity {
         loginFragment.setVisibility(View.INVISIBLE);
         doctorSignUp.setVisibility(View.VISIBLE);
         hospitalSignUp.setVisibility(View.INVISIBLE);
+        agreement.setVisibility(View.INVISIBLE);
+
 
     }
 
@@ -149,8 +171,18 @@ public class MainActivity extends AppCompatActivity {
         loginFragment.setVisibility(View.INVISIBLE);
         doctorSignUp.setVisibility(View.INVISIBLE);
         hospitalSignUp.setVisibility(View.VISIBLE);
+        agreement.setVisibility(View.INVISIBLE);
 
+    }
 
+    public void show_agreement(){
+        signupOptions.setVisibility(View.INVISIBLE);
+        home_screen.setVisibility(View.INVISIBLE);
+        patientSignUp.setVisibility(View.INVISIBLE);
+        loginFragment.setVisibility(View.INVISIBLE);
+        doctorSignUp.setVisibility(View.INVISIBLE);
+        hospitalSignUp.setVisibility(View.INVISIBLE);
+        agreement.setVisibility(View.VISIBLE);
     }
 
 

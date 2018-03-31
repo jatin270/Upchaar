@@ -7,4 +7,28 @@
     tools:context="in.project.com.upchaar.CalenderActivity">
 
 
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <fragment
+        android:id="@+id/day_details_fragment"
+        android:name="Fragments.Day_Details_Fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/calendarView" />
+
+    <Button
+        android:id="@+id/confirm_appointment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="Confirm Appointment" />
 </RelativeLayout>

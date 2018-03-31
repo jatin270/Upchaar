@@ -14,7 +14,7 @@ public class SignUpUser {
     String gender;
     String date_of_birth;
     int role;
-    String address;
+//    String address;
 
     public String getUsername() {
         return username;
@@ -79,12 +79,12 @@ public class SignUpUser {
     public void setRole(int role) {
         this.role = role;
     }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
+//
+//    public String getAddress() {
+//        return address;
+//    }
+//
+//    public void setAddress(String address) {
+//        this.address = address;
+//    }
 }

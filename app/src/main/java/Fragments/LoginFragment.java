@@ -41,7 +41,6 @@ public class LoginFragment extends Fragment {
     private TextView status_textview;
     private ProgressDialog mprogress;
 
-
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -61,10 +60,10 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
         View view=inflater.inflate(R.layout.login_fragment_layout,container,false);
-        username= (EditText) view.findViewById(R.id.login_username);
-        password=(EditText)view.findViewById(R.id.login_password);
-        login_button= (Button) view.findViewById(R.id.login_button);
-        status_textview= (TextView) view.findViewById(R.id.login_status);
+        username= view.findViewById(R.id.login_username);
+        password=view.findViewById(R.id.login_password);
+        login_button=  view.findViewById(R.id.login_button);
+        status_textview= view.findViewById(R.id.login_status);
 
 
         if(savedInstanceState!=null){
@@ -90,18 +89,20 @@ public class LoginFragment extends Fragment {
 
         Call<User> loginRequest = libraryServiceAPI.login(user);
         loginRequest.enqueue(new Callback<User>() {
+
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 mprogress.dismiss();
-
                 System.out.println(response.code());
                 if (response.isSuccessful()) {
                     User user1 = response.body();
                     if (user1 != null) {
                         status="Login Successful";
                         System.out.println(user1);
+                        Intent intent = new Intent(getActivity(), PatientDash.class);
+                        startActivity(intent);
                         if(user1.getId()=="1") {
-                            Intent intent = new Intent(getActivity(), PatientDash.class);
+                            intent = new Intent(getActivity(), PatientDash.class);
                             startActivity(intent);
                             editor.putString("auth-key",user1.getToken());
                             editor.putInt("role", Integer.parseInt(user1.getId()));

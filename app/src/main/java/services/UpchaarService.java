@@ -2,6 +2,10 @@ package services;
 
 import java.util.ArrayList;
 
+import models.AppointmentModel;
+import models.DaySchedule;
+import models.DoctorUser;
+import models.HospitalUser;
 import models.LoginUser;
 import models.PatientUser;
 import models.Return_Patient_User;
@@ -26,6 +30,17 @@ public interface UpchaarService {
 //    @GET("books")
 //    Call<ArrayList<books>> listBooks();
 
+    @GET("dayschedule/")
+    Call<ArrayList<DaySchedule>> listschedules();
+
+    @GET("appointment/")
+    Call<ArrayList<AppointmentModel>> listappointment();
+
+    @GET("doctors/")
+    Call<ArrayList<DoctorUser>> listdoctor();
+
+    @GET("hospital/")
+    Call<ArrayList<HospitalUser>> listhospital();
 
     //Post Request-------------------------------------------------------------------------------------------------------------------------
     @POST("login/")
@@ -36,6 +51,13 @@ public interface UpchaarService {
 
     @POST("patients/")
     Call<Return_Patient_User> signup_patient(@Body PatientUser patientUser);
+
+    @POST("doctors/")
+    Call<DoctorUser> signup_doctor(@Body DoctorUser doctorUser);
+
+    @POST("hospital/")
+    Call<HospitalUser> signup_hospital(@Body HospitalUser hospitalUser);
+
 
 
 

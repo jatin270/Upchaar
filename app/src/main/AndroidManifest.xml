@@ -45,6 +45,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EmergencyActivity" />
+
         <service
             android:name="services.MyService"
             android:exported="false" />
@@ -52,8 +53,11 @@
         <receiver
             android:name="services.MyAlarmReceiver"
             android:process=":remote" />
+
         <activity android:name=".CalenderActivity" />
-        <activity android:name=".Make_Appointment"></activity>
+        <activity android:name=".Make_Appointment" />
+        <activity android:name=".ScheduledDoctor" />
+        <activity android:name=".AppointmentConfirmed"></activity>
     </application>
 
 </manifest>

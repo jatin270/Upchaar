@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Tokens"
+        android:textSize="20dp"
+        android:layout_marginLeft="160dp"
+        android:textColor="#0077aa" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Seats left"
+        android:textSize="20dp"
+        android:layout_marginLeft="270dp"
+        android:textColor="#0077aa" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="MORNING"
+        android:textSize="25dp"
+        android:layout_marginTop="50dp"
+        android:textColor="#00ccaa" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="NOON"
+        android:textSize="25dp"
+        android:layout_marginTop="100dp"
+        android:textColor="#00ccaa" />
+
+    <TextView
+        android:id="@+id/mt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="50"
+        android:textSize="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="180dp" />
+
+    <TextView
+        android:id="@+id/nt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="50"
+        android:textSize="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="180dp" />
+
+
+    <TextView
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="50"
+        android:textSize="25dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="180dp" />
+
+
+    <TextView
+        android:id="@+id/ms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="50"
+        android:textSize="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="290dp" />
+
+    <TextView
+        android:id="@+id/ns"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="50"
+        android:textSize="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="290dp" />
+
+    <TextView
+        android:id="@+id/es"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="50"
+        android:textSize="25dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="290dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        android:text="EVENING"
+        android:textColor="#00ccaa"
+        android:textSize="25dp" />
+
+</RelativeLayout>
